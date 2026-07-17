@@ -7,7 +7,7 @@ signal quit_requested
 const INTRO_DURATION: float = 0.55
 const TRANSITION_DURATION: float = 0.55
 const MENU_HELP: Dictionary = {
-	"NewGameButton": "오프닝과 제1장 이야기를 시작합니다.",
+	"NewGameButton": "주몽의 탄생을 다룬 오프닝을 시작합니다.",
 	"ContinueButton": "저장된 여정이 없습니다.",
 	"SettingsButton": "표시 모드와 해상도를 조정합니다.",
 	"QuitButton": "게임을 종료합니다.",

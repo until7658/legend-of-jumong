@@ -13,17 +13,23 @@ func _run() -> void:
 	await process_frame
 	main.call(&"_on_new_game_requested")
 	await process_frame
-	var narrative: NarrativeSequence = main.get_node("NarrativeSequence") as NarrativeSequence
-	for step: int in range(128):
-		if not narrative.visible:
-			break
-		narrative.call(&"_advance")
+	var prologue: PrologueDirector = main.get_node("Prologue") as PrologueDirector
+	var observed_cuts: Array[int] = []
+	prologue.cut_changed.connect(func(cut_id: int, _cut: Dictionary) -> void: observed_cuts.append(cut_id))
+	for step: int in range(13):
+		prologue.call(&"_advance")
 		await process_frame
-	var prologue_map: NarrativeMapPreview = main.get_node("PrologueMap") as NarrativeMapPreview
-	var chapter_map: NarrativeMapPreview = main.get_node("Chapter01Map") as NarrativeMapPreview
-	if narrative.visible or prologue_map.visible or not chapter_map.visible:
+	prologue.call(&"_advance")
+	await create_timer(0.7).timeout
+	var completion: Control = main.get_node("OpeningComplete") as Control
+	if prologue.visible or not completion.visible or observed_cuts.size() != 13:
 		push_error("[SMOKE_FLOW] Invalid final visibility state")
 		quit(1)
 		return
-	print("[SMOKE_FLOW] PASS title -> prologue -> chapter_01; chapter map retained")
+	for index: int in range(observed_cuts.size()):
+		if observed_cuts[index] != index + 2:
+			push_error("[SMOKE_FLOW] Cut order mismatch")
+			quit(1)
+			return
+	print("[SMOKE_FLOW] PASS title -> 14-cut prologue -> opening complete; Chapter 01 not started")
 	quit(0)
