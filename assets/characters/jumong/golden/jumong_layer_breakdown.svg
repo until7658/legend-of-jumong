@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640">
+  <title>Jumong layered animation breakdown — working diagram, not final game art</title>
+  <desc>384 by 384 canvas diagram showing layer positions, safe area, pivot at 192,340, and separated bow components.</desc>
+  <defs>
+    <style>
+      .bg{fill:#17202b}.canvas{fill:#eef0e8;stroke:#283647;stroke-width:3}.safe{fill:none;stroke:#c98942;stroke-width:2;stroke-dasharray:8 6}.guide{stroke:#5b7088;stroke-width:1;stroke-dasharray:5 5}.label{font-family:Arial,sans-serif;font-size:15px;fill:#e9eee8}.small{font-family:Arial,sans-serif;font-size:12px;fill:#b9c5ce}.dark{font-family:Arial,sans-serif;font-size:13px;fill:#283647}.call{stroke:#d6a45b;stroke-width:2;fill:none}.pivot{fill:#e45745;stroke:#fff;stroke-width:2}.torso{fill:#a64d3f;stroke:#273543;stroke-width:3}.head{fill:#d8a77e;stroke:#273543;stroke-width:3}.hair{fill:#202a37;stroke:#273543;stroke-width:3}.limbBack{fill:#304255;stroke:#273543;stroke-width:3}.limbFront{fill:#5d7180;stroke:#273543;stroke-width:3}.coatBack{fill:#70443d;stroke:#273543;stroke-width:3}.coatFront{fill:#c2634e;stroke:#273543;stroke-width:3}.weapon{fill:none;stroke:#d6a45b;stroke-width:7;stroke-linecap:round}.string{fill:none;stroke:#5c4638;stroke-width:2}.arrow{stroke:#33404b;stroke-width:3}.joint{fill:#f0c86e;stroke:#273543;stroke-width:2}.swatch{stroke:#dbe2df;stroke-width:1}
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="640"/>
+  <text class="label" x="48" y="35">JUMONG 17 — LAYER BREAKDOWN / WORKING DIAGRAM</text>
+  <text class="small" x="48" y="55">Not final game art · canvas 384×384 · world pivot (192,340)</text>
+
+  <!-- 384x384 canvas shown at 1.35x, origin 48,80 -->
+  <g transform="translate(48 80) scale(1.35)">
+    <rect class="canvas" x="0" y="0" width="384" height="384"/>
+    <rect class="safe" x="16" y="16" width="352" height="324"/>
+    <line class="guide" x1="192" y1="0" x2="192" y2="384"/>
+    <line class="guide" x1="0" y1="340" x2="384" y2="340"/>
+    <text class="dark" x="20" y="34">SAFE AREA x16..368 / y16..340</text>
+
+    <!-- back elements -->
+    <path class="coatBack" d="M164 198 L205 198 L225 292 L194 278 L170 300 Z"/>
+    <g id="back_leg">
+      <path class="limbBack" d="M181 260 L199 260 L211 326 L194 340 L183 327 Z"/>
+      <circle class="joint" cx="197" cy="291" r="4"/>
+    </g>
+    <g id="back_arm">
+      <path class="limbBack" d="M170 176 L153 181 L134 242 L145 250 L169 212 Z"/>
+      <circle class="joint" cx="151" cy="211" r="4"/>
+    </g>
+    <g id="quiver">
+      <path class="limbBack" d="M208 187 L224 181 L237 263 L218 268 Z"/>
+      <line class="arrow" x1="219" y1="189" x2="210" y2="151"/>
+      <line class="arrow" x1="225" y1="189" x2="220" y2="148"/>
+    </g>
+
+    <!-- torso and head -->
+    <path id="torso" class="torso" d="M164 164 Q192 151 220 166 L225 257 Q193 271 160 256 Z"/>
+    <line class="guide" x1="192" y1="260" x2="192" y2="340"/>
+    <circle class="joint" cx="192" cy="260" r="5"/>
+    <g id="head">
+      <path class="head" d="M171 105 Q192 86 214 105 L211 151 Q192 164 173 150 Z"/>
+      <path class="hair" d="M169 111 Q171 83 194 80 Q216 85 218 112 L210 100 L203 112 L190 96 L180 112 Z"/>
+      <path class="hair" d="M185 82 Q190 52 202 48 Q211 64 204 84 Z"/>
+      <circle class="joint" cx="192" cy="158" r="4"/>
+    </g>
+
+    <!-- front elements -->
+    <g id="front_leg">
+      <path class="limbFront" d="M164 258 L183 259 L181 326 L169 340 L155 329 Z"/>
+      <circle class="joint" cx="172" cy="291" r="4"/>
+    </g>
+    <path id="coat_front_flap" class="coatFront" d="M159 241 L194 252 L183 303 L162 284 L148 301 Z"/>
+    <g id="front_arm">
+      <path class="limbFront" d="M216 176 L232 185 L250 239 L239 248 L214 211 Z"/>
+      <circle class="joint" cx="232" cy="212" r="4"/>
+      <circle class="joint" cx="244" cy="244" r="4"/>
+    </g>
+
+    <!-- bow/string/arrow separated but in working placement -->
+    <g id="bow">
+      <path class="weapon" d="M282 88 Q337 192 282 301"/>
+      <circle class="joint" cx="326" cy="194" r="5"/>
+    </g>
+    <g id="bow_string">
+      <path class="string" d="M282 88 L326 194 L282 301"/>
+    </g>
+    <g id="arrow">
+      <line class="arrow" x1="244" y1="194" x2="348" y2="194"/>
+      <path fill="#33404b" d="M348 194 l-12 -6 v12 z"/>
+    </g>
+
+    <!-- world pivot -->
+    <g id="world_pivot">
+      <circle class="pivot" cx="192" cy="340" r="7"/>
+      <line x1="180" y1="340" x2="204" y2="340" stroke="#fff" stroke-width="2"/>
+      <line x1="192" y1="328" x2="192" y2="352" stroke="#fff" stroke-width="2"/>
+    </g>
+    <text class="dark" x="205" y="336">PIVOT 192,340</text>
+  </g>
+
+  <!-- callouts -->
+  <g>
+    <path class="call" d="M562 115 L625 115"/><text class="label" x="638" y="120">head + hair (one approved base)</text>
+    <path class="call" d="M550 280 L625 175"/><text class="label" x="638" y="180">front_arm / back_arm</text>
+    <path class="call" d="M500 405 L625 235"/><text class="label" x="638" y="240">torso + separate coat flaps</text>
+    <path class="call" d="M455 490 L625 295"/><text class="label" x="638" y="300">front_leg / back_leg</text>
+    <path class="call" d="M486 538 L625 355"/><text class="label" x="638" y="360">fixed world pivot / foot contact</text>
+    <path class="call" d="M498 207 L625 415"/><text class="label" x="638" y="420">bow: fixed master path</text>
+    <path class="call" d="M496 340 L625 465"/><text class="label" x="638" y="470">string: tip → nock → tip</text>
+    <path class="call" d="M515 342 L625 515"/><text class="label" x="638" y="520">arrow: fixed length, separate layer</text>
+  </g>
+
+  <g transform="translate(630 552)">
+    <rect class="swatch" x="0" y="0" width="34" height="20" fill="#a64d3f"/><text class="small" x="43" y="15">rust-red torso</text>
+    <rect class="swatch" x="150" y="0" width="34" height="20" fill="#304255"/><text class="small" x="193" y="15">blue-black shadow</text>
+    <rect class="swatch" x="0" y="30" width="34" height="20" fill="#d6a45b"/><text class="small" x="43" y="45">amber weapon guide</text>
+  </g>
+</svg>

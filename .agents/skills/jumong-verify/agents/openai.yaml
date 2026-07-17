@@ -1,0 +1,5 @@
+interface:
+  display_name: "주몽 검증"
+  short_description: "Godot 실행 결과와 로그를 읽기 전용으로 검증합니다"
+  default_prompt: "Use $jumong-verify to verify the current Godot scene without modifying project files."
+

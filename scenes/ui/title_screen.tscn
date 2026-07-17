@@ -1,0 +1,324 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/title/keyvisual_dawn_river_stylized_02.png" id="2_background"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_menu.tscn" id="3_settings"]
+
+[sub_resource type="StyleBoxFlat" id="Style_default"]
+bg_color = Color(0.149, 0.22, 0.267, 0.18)
+border_width_bottom = 1
+border_color = Color(0.443, 0.502, 0.541, 0.28)
+
+[sub_resource type="StyleBoxFlat" id="Style_hover"]
+bg_color = Color(0.149, 0.22, 0.267, 0.42)
+border_width_left = 2
+border_width_bottom = 1
+border_color = Color(0.651, 0.373, 0.263, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_focus"]
+bg_color = Color(0.149, 0.22, 0.267, 0.58)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.651, 0.373, 0.263, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_pressed"]
+bg_color = Color(0.557, 0.302, 0.212, 0.38)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.792, 0.514, 0.388, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_disabled_like"]
+bg_color = Color(0.08, 0.12, 0.15, 0.22)
+border_width_bottom = 1
+border_color = Color(0.337, 0.388, 0.42, 0.35)
+
+[sub_resource type="StyleBoxFlat" id="Dialog_panel"]
+bg_color = Color(0.027, 0.071, 0.106, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.651, 0.373, 0.263, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="Style_empty"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_script")
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -8.0
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="GlobalVeil" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.025, 0.04, 0.12)
+
+[node name="LocalScrim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -270.0
+offset_right = 390.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.012, 0.027, 0.047, 0.54)
+
+[node name="TitleBlock" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 126.0
+offset_bottom = 260.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945, 0.91, 0.812, 1)
+theme_override_colors/font_shadow_color = Color(0.008, 0.02, 0.03, 0.95)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 68
+text = "주몽신화전기"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.776, 0.804, 0.824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "한 사람의 삶은 역사가 되고, 역사는 마침내 신화가 되었다."
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -164.0
+offset_top = 356.0
+offset_right = 164.0
+offset_bottom = 568.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="NewGameButton" type="Button" parent="Menu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(328, 48)
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.776, 0.804, 0.824, 1)
+theme_override_colors/font_hover_color = Color(0.945, 0.91, 0.812, 1)
+theme_override_colors/font_focus_color = Color(1, 0.949, 0.812, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.969, 0.898, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_default")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/focus = SubResource("Style_focus")
+theme_override_styles/pressed = SubResource("Style_pressed")
+text = "새 게임"
+
+[node name="ContinueButton" type="Button" parent="Menu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(328, 48)
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.459, 0.502, 0.541, 1)
+theme_override_colors/font_hover_color = Color(0.56, 0.59, 0.61, 1)
+theme_override_colors/font_focus_color = Color(0.56, 0.59, 0.61, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_disabled_like")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/focus = SubResource("Style_focus")
+theme_override_styles/pressed = SubResource("Style_disabled_like")
+text = "이어하기  ·  잠김"
+
+[node name="SettingsButton" type="Button" parent="Menu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(328, 48)
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.776, 0.804, 0.824, 1)
+theme_override_colors/font_hover_color = Color(0.945, 0.91, 0.812, 1)
+theme_override_colors/font_focus_color = Color(1, 0.949, 0.812, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_default")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/focus = SubResource("Style_focus")
+theme_override_styles/pressed = SubResource("Style_pressed")
+text = "설정"
+
+[node name="QuitButton" type="Button" parent="Menu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(328, 48)
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.776, 0.804, 0.824, 1)
+theme_override_colors/font_hover_color = Color(0.945, 0.91, 0.812, 1)
+theme_override_colors/font_focus_color = Color(1, 0.949, 0.812, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.969, 0.898, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_default")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/focus = SubResource("Style_focus")
+theme_override_styles/pressed = SubResource("Style_pressed")
+text = "종료"
+
+[node name="HelpText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -70.0
+offset_right = -400.0
+offset_bottom = -40.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.776, 0.804, 0.824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "새 게임을 시작합니다. (현재 빌드는 시험장으로 연결되는 임시 개발 경로입니다.)"
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+offset_top = -70.0
+offset_right = -48.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.62, 0.67, 0.72, 0.9)
+theme_override_font_sizes/font_size = 13
+text = "PROTOTYPE · M1"
+horizontal_alignment = 2
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.02, 0.03, 0)
+
+[node name="QuitDialog" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -105.0
+offset_right = 210.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Dialog_panel")
+
+[node name="Margin" type="MarginContainer" parent="QuitDialog"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="QuitDialog/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="Question" type="Label" parent="QuitDialog/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945, 0.91, 0.812, 1)
+theme_override_font_sizes/font_size = 22
+text = "게임을 종료하시겠습니까?"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="QuitDialog/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="NoButton" type="Button" parent="QuitDialog/Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(132, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_default")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/focus = SubResource("Style_focus")
+theme_override_styles/pressed = SubResource("Style_pressed")
+text = "아니요"
+
+[node name="YesButton" type="Button" parent="QuitDialog/Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(132, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_default")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/focus = SubResource("Style_focus")
+theme_override_styles/pressed = SubResource("Style_pressed")
+text = "예"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_settings")]
+unique_name_in_owner = true

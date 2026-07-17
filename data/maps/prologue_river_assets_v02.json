@@ -1,0 +1,35 @@
+{
+  "version": "v02",
+  "terrain": {
+    "texture": "res://assets/tiles/golden_candidates/prologue_river_terrain_candidate_v02.png",
+    "size": [1024, 1024],
+    "cell_size": [256, 256],
+    "repeat_preview": "res://assets/tiles/golden_candidates/prologue_river_terrain_repeat_3x3_v02.png",
+    "edge_mad": {"dirt": {"lr": 0.0, "tb": 0.0}, "water": {"lr": 0.0, "tb": 0.0}},
+    "peering_intent": [
+      {"cell": [0,0], "kind": "dirt_base", "W":"dirt","N":"dirt","E":"dirt","S":"dirt"},
+      {"cell": [1,0], "kind": "dirt_base_variant", "W":"dirt","N":"dirt","E":"dirt","S":"dirt"},
+      {"cell": [2,0], "kind": "grass_dirt_mix", "W":"land","N":"land","E":"land","S":"land"},
+      {"cell": [3,0], "kind": "grass_base", "W":"grass","N":"grass","E":"grass","S":"grass"},
+      {"cell": [0,1], "kind": "water_base", "W":"water","N":"water","E":"water","S":"water"},
+      {"cell": [1,1], "kind": "water_base_variant", "W":"water","N":"water","E":"water","S":"water"},
+      {"cell": [2,1], "kind": "water_stone_variant", "W":"water","N":"water","E":"water","S":"water"},
+      {"cell": [3,1], "kind": "water_stone_variant", "W":"water","N":"water","E":"water","S":"water"},
+      {"cell": [0,2], "kind": "shore_land_north", "W":"shore","N":"land","E":"shore","S":"water"},
+      {"cell": [1,2], "kind": "shore_land_south", "W":"shore","N":"water","E":"shore","S":"land"},
+      {"cell": [2,2], "kind": "shore_land_east", "W":"water","N":"shore","E":"land","S":"shore"},
+      {"cell": [3,2], "kind": "shore_land_west", "W":"land","N":"shore","E":"water","S":"shore"},
+      {"cell": [0,3], "kind": "shore_horizontal_variant", "W":"shore","N":"land","E":"shore","S":"water"},
+      {"cell": [1,3], "kind": "shore_outer_corner", "W":"land","N":"land","E":"water","S":"water"},
+      {"cell": [2,3], "kind": "shore_inner_corner", "W":"water","N":"land","E":"land","S":"water"},
+      {"cell": [3,3], "kind": "ford_transition", "W":"land","N":"shore","E":"land","S":"shore"}
+    ]
+  },
+  "props": [
+    {"id":"tree","texture":"res://assets/objects/golden_candidates/v02/tree_v02.png","canvas":[512,512],"pivot":[256,480]},
+    {"id":"rock","texture":"res://assets/objects/golden_candidates/v02/rock_v02.png","canvas":[512,512],"pivot":[256,480]},
+    {"id":"reeds","texture":"res://assets/objects/golden_candidates/v02/reeds_v02.png","canvas":[512,512],"pivot":[256,480]},
+    {"id":"boat","texture":"res://assets/objects/golden_candidates/v02/boat_v02.png","canvas":[512,512],"pivot":[256,480]},
+    {"id":"oar","texture":"res://assets/objects/golden_candidates/v02/oar_v02.png","canvas":[512,512],"pivot":[256,480]}
+  ]
+}

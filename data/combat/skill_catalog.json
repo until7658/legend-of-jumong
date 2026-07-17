@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "balance_stage": "mechanic_prototype",
+  "shared_rules": {"max_stamina":5,"initial_stamina":2,"active_slots":4,"reaction_slots":1,"passive_slots":2,"finisher_slots":1,"cooperative_slots_per_party":2},
+  "characters": [
+    {"character_id":"jumong","class_id":"trajectory_architect","class_name":"궤적 설계자","unique_resource":{"id":"breath","max":3},"branches":["far_sight","crossed_lines","bow_at_your_back"],"skills":[
+      {"id":"jumong_ahead_of_wind","name":"한 발 앞의 바람","type":"setup","cost":1,"target":"enemy_or_slot","creates":"sightline","trigger":"target_moves_or_attacks_through_slot"},
+      {"id":"jumong_hold_the_string","name":"시위를 놓지 않는다","type":"convert","cost":0,"target":"own_sightline","effects":["delay:1_round","breath:+1","next_trigger_ignore_defense:25"]},
+      {"id":"jumong_place_to_flee","name":"도망칠 자리","type":"reaction","cost":2,"target":"ally_one","trigger":"ally_targeted","effects":["ally_retreat_to_empty_slot","shoot_vacated_slot:75"]},
+      {"id":"jumong_cross_sightlines","name":"사선 겹치기","type":"setup","cost":2,"target":"field_slot","requires":"existing_sightline","effects":["create_crossing_sightline","crossing_hit_power:140"]},
+      {"id":"jumong_setting_sun","name":"낙일","type":"finisher","cost":5,"target":"enemy_one","effects":["consume_all_sightlines","converge_power_per_line:70","missed_line_to_ally_barrier:40"]}
+    ]},
+    {"character_id":"oi","class_id":"center_of_impact","class_name":"충돌의 중심","unique_resource":{"id":"impact","max":3},"branches":["keystone","formation_breaker","return_force"],"skills":[
+      {"id":"oi_break_it_here","name":"여기서 꺾는다","type":"intercept","cost":1,"target":"enemy_one","trigger":"enemy_targets_ally","effects":["redirect_to_self","record_attack_direction","impact:+1"]},
+      {"id":"oi_weight_received","name":"받아낸 무게","type":"convert","cost":0,"target":"self","effects":["store_damage_pct:35","impact:+1","next_attack_push_same_direction"]},
+      {"id":"oi_not_one_step","name":"한 걸음도 없다","type":"stance","cost":1,"target":"self","effects":["anchor_slot","allies_may_route_through_slot"]},
+      {"id":"oi_make_way","name":"길을 비켜라","type":"active","cost":2,"target":"enemy_front","effects":["spend_all_impact","push_per_impact:1","if_blocked_delay_order:20"]},
+      {"id":"oi_over_broken_lines","name":"깨진 대형 위로","type":"finisher","cost":5,"target":"enemy_formation","effects":["replay_recorded_directions_reverse","collision_power_per_impact:65"]}
+    ]},
+    {"character_id":"mari","class_id":"route_disruptor","class_name":"경로 교란자","unique_resource":{"id":"momentum","max":3},"branches":["shortcut","return_line","dead_end"],"skills":[
+      {"id":"mari_shortcut","name":"샛길","type":"setup","cost":1,"target":"two_ally_slots","creates":"path_link","effects":["first_ally_keeps_order"]},
+      {"id":"mari_returning_spear","name":"돌아오는 창","type":"active","cost":1,"target":"enemy_slot","power":70,"effects":["set_path_endpoint","self_use_path_retrieve_and_attack:55"]},
+      {"id":"mari_erase_tracks","name":"발자국 지우기","type":"reaction","cost":1,"target":"used_path","trigger":"enemy_follows_path","effects":["remove_path","return_enemy_to_origin"]},
+      {"id":"mari_change_crossroad","name":"길목 바꾸기","type":"intercept","cost":2,"target":"moving_enemy","effects":["replace_destination_with_other_path_endpoint"]},
+      {"id":"mari_i_choose_the_way","name":"길은 내가 고른다","type":"finisher","cost":5,"target":"all_paths","effects":["reconnect_all_routes","one_extra_action_per_route_user"]}
+    ]},
+    {"character_id":"hyeopbo","class_id":"condition_architect","class_name":"조건 설계자","unique_resource":{"id":"evidence","max":3},"branches":["observation","response","prescription"],"skills":[
+      {"id":"hyeopbo_expected_that","name":"그럴 줄 알았다","type":"setup","cost":1,"target":"enemy_one","creates":"recorded_condition","choices":["attack","move","buff"],"on_trigger":"opening:1"},
+      {"id":"hyeopbo_second_record","name":"두 번째 기록","type":"setup","cost":1,"target":"enemy_with_record","effects":["add_alternate_condition","consume_first_trigger_only"]},
+      {"id":"hyeopbo_not_yet","name":"아직 쓰지 마라","type":"setup","cost":1,"target":"ally_one","creates":"reserved_remedy","triggers":["hp_below_35_pct","debuff_received"]},
+      {"id":"hyeopbo_wrong_order","name":"틀린 명령","type":"intercept","cost":2,"target":"enemy_with_triggered_record","effects":["retarget_to_other_valid_unit"]},
+      {"id":"hyeopbo_unrecorded_variable","name":"기록되지 않은 변수","type":"finisher","cost":5,"target":"all_enemies","effects":["copy_triggered_conditions","apply_once_each_this_round"]}
+    ]},
+    {"character_id":"soseono","class_id":"board_opener","class_name":"판을 여는 사람","unique_resource":{"id":"stake","max":5},"branches":["frontier","exchange","settlement"],"skills":[
+      {"id":"soseono_buy_the_ground","name":"자리를 산다","type":"setup","cost":1,"target":"empty_slot","creates":"stake_site","effects":["first_user_pays_stamina:1","stake:+1"]},
+      {"id":"soseono_price_already_paid","name":"값은 이미 치렀다","type":"invest","cost":0,"target":"ally_recent_stamina_spend","effects":["store_spent_stamina_pct:50","stake:+1"]},
+      {"id":"soseono_this_road_is_mine","name":"그 길은 내 것이다","type":"intercept","cost":2,"target":"enemy_entering_or_attacking_site","power":80,"effects":["short_sword_intercept","occupy_site"]},
+      {"id":"soseono_counted_the_loss","name":"손해까지 계산했다","type":"reaction","cost":1,"target":"destroyed_site","effects":["preserve_stake","settle_immediately","end_destroyer_action"]},
+      {"id":"soseono_open_new_board","name":"새 판을 연다","type":"finisher","cost":5,"target":"battlefield","effects":["consume_all_stake","reorder_remaining_actions","reform_positions","at_five_refund_one_spent_action"]}
+    ]}
+  ]
+}

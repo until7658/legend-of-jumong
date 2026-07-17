@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hd2d_test_hud.gd" id="1_hud"]
+
+[node name="Hd2dTestHud" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Layout" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="SafeArea/Layout"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="HeaderMargin" type="MarginContainer" parent="SafeArea/Layout/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 10
+
+[node name="HeaderContent" type="HBoxContainer" parent="SafeArea/Layout/Header/HeaderMargin"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="LocationGroup" type="VBoxContainer" parent="SafeArea/Layout/Header/HeaderMargin/HeaderContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SectionLabel" type="Label" parent="SafeArea/Layout/Header/HeaderMargin/HeaderContent/LocationGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.76, 0.75, 1)
+theme_override_font_sizes/font_size = 12
+text = "현재 지역"
+
+[node name="LocationLabel" type="Label" parent="SafeArea/Layout/Header/HeaderMargin/HeaderContent/LocationGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.82, 0.54, 1)
+theme_override_font_sizes/font_size = 22
+text = "HD-2D 시험장"
+
+[node name="StatusLabel" type="Label" parent="SafeArea/Layout/Header/HeaderMargin/HeaderContent"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.8, 0.87, 0.85, 1)
+text = "탐색 준비"
+
+[node name="Spacer" type="Control" parent="SafeArea/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Footer" type="HBoxContainer" parent="SafeArea/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ObjectivePanel" type="PanelContainer" parent="SafeArea/Layout/Footer"]
+custom_minimum_size = Vector2(420, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ObjectiveMargin" type="MarginContainer" parent="SafeArea/Layout/Footer/ObjectivePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="ObjectiveContent" type="VBoxContainer" parent="SafeArea/Layout/Footer/ObjectivePanel/ObjectiveMargin"]
+layout_mode = 2
+
+[node name="SectionLabel" type="Label" parent="SafeArea/Layout/Footer/ObjectivePanel/ObjectiveMargin/ObjectiveContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.76, 0.75, 1)
+theme_override_font_sizes/font_size = 12
+text = "시험 목표"
+
+[node name="ObjectiveLabel" type="Label" parent="SafeArea/Layout/Footer/ObjectivePanel/ObjectiveMargin/ObjectiveContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "2D 캐릭터와 3D 배경의 가독성을 확인하세요."
+autowrap_mode = 2
+
+[node name="CommandPanel" type="PanelContainer" parent="SafeArea/Layout/Footer"]
+layout_mode = 2
+
+[node name="CommandMargin" type="MarginContainer" parent="SafeArea/Layout/Footer/CommandPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="Commands" type="HBoxContainer" parent="SafeArea/Layout/Footer/CommandPanel/CommandMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CameraResetButton" type="Button" parent="SafeArea/Layout/Footer/CommandPanel/CommandMargin/Commands"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 52)
+layout_mode = 2
+text = "시점 초기화"
+
+[node name="InteractButton" type="Button" parent="SafeArea/Layout/Footer/CommandPanel/CommandMargin/Commands"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 52)
+layout_mode = 2
+disabled = true
+text = "상호작용"

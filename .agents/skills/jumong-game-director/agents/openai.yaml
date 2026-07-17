@@ -1,0 +1,5 @@
+interface:
+  display_name: "주몽 게임 디렉터"
+  short_description: "주몽신화전기 제작 계획과 승인 범위를 조율합니다"
+  default_prompt: "Use $jumong-game-director to plan the next approved milestone for the Jumong game."
+

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "art_direction": {
+    "style": "cartoon_hd2d_northern_ancient_inspired",
+    "dongbuyeo_colors": ["navy", "blue_black", "bronze"],
+    "jumong_party_colors": ["brick_red", "red_brown", "copper_red"],
+    "jolbon_colors": ["earth_brown", "moss_green", "ochre"],
+    "prohibited": ["joseon_official_hats", "chinese_imperial_crowns", "european_plate_armor", "modern_hair", "early_samjogo_emblem"]
+  },
+  "characters": [
+    {"id":"jumong","name":"주몽","category":"core","age_chapter_1":17,"role":"궁수 주인공","faction":"jumong","palette":"brick_red","weapon":"composite_bow","arc":"궁정의 이방인에서 공동체의 지도자로"},
+    {"id":"yuhwa","name":"유화","category":"core","age_chapter_1":"30대 후반~40세 전후","role":"주몽의 어머니이자 궁정 생존자","faction":"independent","palette":"pale_gray_blue","weapon":"none","arc":"침묵으로 보호하던 어머니에서 아들을 떠나보내는 결단자로"},
+    {"id":"king_geumwa","name":"금와왕","category":"core","age_chapter_1":"60대 중후반","role":"동부여 왕","faction":"dongbuyeo","palette":"blue_black","weapon":"command_baton","arc":"보호자와 통치자의 의무 사이에서 한계를 드러냄"},
+    {"id":"daeso","name":"대소","category":"core","age_chapter_1":"20대 중반","role":"유력 후계자이자 제1막 적대자","faction":"dongbuyeo","palette":"deep_navy","weapon":"long_spear","arc":"질투를 왕국 안정의 명분으로 바꾸며 주몽을 추격"},
+    {"id":"other_princes","name":"동부여의 다른 왕자들","category":"group","age_chapter_1":"10대 후반~20대","role":"대소의 후계 세력","faction":"dongbuyeo","palette":"navy_variants","weapon":"mixed","arc":"각자의 야심과 공포로 대소에게 결집"},
+    {"id":"oi","name":"오이","category":"party","age_chapter_1":"20대 초반","role":"전위 전사","faction":"jumong","palette":"earth_red_brown","weapon":"small_shield_and_axe","arc":"왕성 사람을 불신하는 병사에서 공동 창건자로"},
+    {"id":"mari","name":"마리","category":"party","age_chapter_1":"20대 초중반","role":"정찰과 지형 안내","faction":"jumong","palette":"moss_and_faded_red","weapon":"javelin_and_small_bow","arc":"생존을 계산하는 길잡이에서 동료의 길을 만드는 사람으로"},
+    {"id":"hyeopbo","name":"협보","category":"party","age_chapter_1":"20대 중반","role":"지원·협상·정보 해석","faction":"jumong","palette":"gray_brown_and_dark_purple","weapon":"short_blade_and_smoke_tools","arc":"기록의 오류를 고치는 실무자에서 새 질서를 설계하는 인물로"},
+    {"id":"soseono","name":"소서노","category":"jolbon","age_chapter_1":"20대 초반","role":"졸본의 정치·경제적 동맹자","faction":"jolbon","palette":"ochre_and_copper","weapon":"short_sword","arc":"주몽의 혈통이 아닌 약속 이행을 보고 동맹을 선택"},
+    {"id":"yeontabal","name":"연타발","category":"jolbon","age_chapter_1":"50대 후반","role":"졸본 유력 지도자","faction":"jolbon","palette":"dark_earth_brown","weapon":"none","arc":"주몽에게 지도자의 대가를 시험"},
+    {"id":"fisherman","name":"강의 어부","category":"prologue","age_prologue":"50대 후반","role":"유화의 구조자","faction":"river_community","palette":"weathered_gray_brown","weapon":"none","arc":"생명을 구조해 역사의 첫 연결을 만듦","fictional":true},
+    {"id":"ferry_warden","name":"나루 책임자","category":"prologue","age_prologue":"40대 초중반","role":"유화를 왕성에 보고하는 실무자","faction":"river_community","palette":"dark_brown","weapon":"none","fictional":true},
+    {"id":"court_official","name":"왕성의 신하","category":"support","age_chapter_1":"60대 후반","role":"보수적 조언자","faction":"dongbuyeo","palette":"ink_blue_gray","weapon":"none"},
+    {"id":"mugol","name":"무골","category":"support","age_chapter_1":"50대 초반","role":"마구간 책임자이자 주몽의 옛 스승","faction":"dongbuyeo_commoner","palette":"faded_indigo","weapon":"stable_tools","fictional":true},
+    {"id":"aran","name":"아란","category":"support","age_chapter_1":"30대 초반","role":"유화의 시녀이자 정보 조력자","faction":"yuhwa","palette":"light_gray_blue","weapon":"none","fictional":true},
+    {"id":"haemyeong","name":"해명","category":"antagonist","age_chapter_1":"30대 후반","role":"대소 측 무장과 매복 지휘관","faction":"daeso","palette":"dark_navy","weapon":"long_spear","fictional":true},
+    {"id":"bari","name":"바리","category":"river","age":"60대","role":"엄사수 강가 공동체 대표","faction":"river_community","palette":"gray_green","weapon":"depth_pole","fictional":true},
+    {"id":"biryuchan","name":"비류찬","category":"jolbon","age":"40대","role":"졸본 방어대장","faction":"jolbon","palette":"moss_green","weapon":"large_shield_and_spear","fictional":true}
+  ]
+}

@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/bootstrap/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/hd2d/hd2d_test_world.tscn" id="2_world"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hd2d_test_hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/title_screen.tscn" id="4_title"]
+[ext_resource type="PackedScene" path="res://scenes/maps/prologue_riverbank_map.tscn" id="5_prologue_map"]
+[ext_resource type="PackedScene" path="res://scenes/maps/chapter_01_training_map.tscn" id="6_chapter_map"]
+[ext_resource type="PackedScene" path="res://scenes/narrative/opening_chapter_01.tscn" id="7_narrative"]
+[ext_resource type="Script" path="res://scripts/systems/display_settings.gd" id="8_display"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="DisplaySettings" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_display")
+
+[node name="Hd2dTestWorld" parent="." instance=ExtResource("2_world")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Hd2dTestHud" parent="." instance=ExtResource("3_hud")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PrologueMap" parent="." instance=ExtResource("5_prologue_map")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Chapter01Map" parent="." instance=ExtResource("6_chapter_map")]
+unique_name_in_owner = true
+visible = false
+
+[node name="TitleScreen" parent="." instance=ExtResource("4_title")]
+unique_name_in_owner = true
+
+[node name="NarrativeSequence" parent="." instance=ExtResource("7_narrative")]
+unique_name_in_owner = true
+visible = false

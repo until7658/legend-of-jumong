@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "root": "res://assets/portraits/dialogue",
+  "framing": "chest_up_three_quarter",
+  "characters": {
+    "jumong": {"default":"neutral","expressions":["neutral","confident","irritated","suspicious","wounded","determined"]},
+    "yuhwa": {"default":"calm","expressions":["calm","concerned","stern","sorrow_resolved"]},
+    "king_geumwa": {"default":"neutral","expressions":["neutral","approving","suspicious","commanding"]},
+    "daeso": {"default":"polite_smile","expressions":["polite_smile","mocking","uneasy","cold"]},
+    "court_official": {"default":"neutral","expressions":["neutral","concerned","firm"]},
+    "fisherman": {"default":"concerned","expressions":["concerned","relieved"]},
+    "ferry_warden": {"default":"alert","expressions":["alert","commanding"]},
+    "mugol": {"default":"dry_smile","expressions":["dry_smile","concerned","encouraging"]},
+    "aran": {"default":"anxious","expressions":["anxious","urgent"]},
+    "haemyeong": {"default":"disciplined","expressions":["disciplined","cold","defensive"]},
+    "hyeopbo": {"default":"neutral","expressions":["neutral","quiet_warning"]},
+    "oi": {"default":"neutral","expressions":["neutral","confrontational"]},
+    "mari": {"default":"neutral","expressions":["neutral","focused"]}
+  },
+  "path_pattern": "{root}/{character_id}/{expression_id}.png"
+}

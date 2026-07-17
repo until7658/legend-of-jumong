@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_map/narrative_map_preview.gd" id="1_map"]
+
+[sub_resource type="Environment" id="Environment_map"]
+background_mode = 1
+background_color = Color(0.045, 0.075, 0.09, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.48, 0.56, 0.62, 1)
+ambient_light_energy = 0.82
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_actor"]
+radius = 0.34
+height = 1.4
+
+[node name="PrologueRiverbankMap" type="Node3D"]
+script = ExtResource("1_map")
+map_kind = 0
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="EntryMarker" type="Marker3D" parent="."]
+position = Vector3(12.5, 0.12, 9.5)
+
+[node name="ExitMarker" type="Marker3D" parent="."]
+position = Vector3(14.8, 0.12, 2.0)
+
+[node name="JumongPlaceholder" type="MeshInstance3D" parent="."]
+position = Vector3(12.5, 0.72, 9.5)
+mesh = SubResource("CapsuleMesh_actor")
+cast_shadow = 1
+
+[node name="MapCaption" type="Label3D" parent="."]
+position = Vector3(9.0, 2.5, 6.0)
+text = "엄사수 강변 · 새벽"
+font_size = 48
+outline_size = 10
+modulate = Color(0.91, 0.94, 0.86, 1)
+billboard = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_map")
+
+[node name="DawnLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, -28, 0)
+light_color = Color(0.72, 0.82, 0.9, 1)
+light_energy = 1.05
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(8.2, 13.5, 15.8)
+rotation_degrees = Vector3(-48, 0, 0)
+projection = 1
+size = 15.5
+current = true

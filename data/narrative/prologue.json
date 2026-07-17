@@ -1,0 +1,32 @@
+{
+  "id": "prologue_river_woman_v1",
+  "title": "강에서 온 여인",
+  "estimated_duration_seconds": 264,
+  "start": "검은 화면과 강물 소리",
+  "end": "하늘을 배경으로 한 타이틀 뒤 암전과 17년 뒤 활시위 소리",
+  "characters": ["yuhwa", "fisherman", "ferry_warden", "king_geumwa", "court_official"],
+  "scenes": [
+    {"id": 1, "title": "새벽의 강", "cuts": [1, 2, 3, 4]},
+    {"id": 2, "title": "나루 책임자의 집무 공간", "cuts": [5, 6]},
+    {"id": 3, "title": "금와왕의 판단", "cuts": [7, 8, 9]},
+    {"id": 4, "title": "햇빛과 타이틀", "cuts": [10, 11, 12, 13, 14]}
+  ],
+  "dialogue": [
+    {"speaker": "어부", "line": "강에서 건져 올렸습니다. 상류에서 떠내려온 듯합니다."},
+    {"speaker": "나루 책임자", "line": "살아 있느냐?"},
+    {"speaker": "어부", "line": "예. 정신은 잃었지만 숨은 붙어 있습니다."},
+    {"speaker": "나루 책임자", "line": "이 차림은 평범한 백성의 것이 아니다. 왕성에 알려라."},
+    {"speaker": "신하", "line": "신원을 알 수 없는 자입니다."},
+    {"speaker": "금와", "line": "그러니 죽게 내버려 둘 수 없다."},
+    {"speaker": "신하", "line": "후환이 될 수도 있습니다."},
+    {"speaker": "금와", "line": "살아나야 무엇을 두려워해야 하는지도 알 수 있지."},
+    {"speaker": "금와", "line": "안쪽 처소를 내주고 의원을 붙여라. 깨어나는 즉시 내게 알리도록."}
+  ],
+  "title_text": "주몽신화전기",
+  "title_subtext": "한 사람의 삶은 역사가 되고, 역사는 마침내 신화가 되었다.",
+  "chapter_01_transition": {
+    "time_card": "열일곱 해 뒤, 동부여",
+    "audio_bridge": "말 울음 뒤 활시위를 당기는 소리",
+    "visual_bridge": "화살이 화면을 가르고 궁술 시험 표적을 맞힌다."
+  }
+}

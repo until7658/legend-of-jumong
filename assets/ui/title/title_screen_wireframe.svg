@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">주몽신화전기 타이틀 화면 와이어프레임</title>
+  <desc id="desc">1280×720 기준 안전영역, 로고, 부제, 네 개 메뉴, 비활성 사유와 버전을 표시한 UI 배치 시안. 새 게임 항목은 좌측 표식과 윤곽으로 포커스를 나타낸다.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#07121d"/>
+      <stop offset="0.62" stop-color="#18303d"/>
+      <stop offset="1" stop-color="#263844"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#102632"/>
+      <stop offset="0.5" stop-color="#314c58"/>
+      <stop offset="1" stop-color="#102632"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8ea0a6" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#8ea0a6" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#8ea0a6" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .ko { font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+      .label { fill: #c6cdd2; font-size: 14px; }
+      .guide { fill: none; stroke: #8ea0a6; stroke-width: 1; stroke-dasharray: 7 6; opacity: .72; }
+      .measure { fill: #8ea0a6; font-size: 12px; }
+      .menu { fill: #c6cdd2; font-size: 20px; font-weight: 500; text-anchor: middle; }
+      .disabled { fill: #75808a; }
+    </style>
+  </defs>
+
+  <!-- Background value blocks -->
+  <rect width="1280" height="720" fill="url(#sky)"/>
+  <rect x="0" y="500" width="1280" height="220" fill="url(#river)"/>
+  <rect x="0" y="430" width="1280" height="105" fill="url(#mist)"/>
+  <path d="M0 515 C190 490 320 530 500 505 S830 485 1000 515 S1170 525 1280 500 V720 H0Z" fill="#07121d" opacity=".3"/>
+
+  <!-- Safe area, exact 48/40 -->
+  <rect x="48" y="40" width="1184" height="640" class="guide"/>
+  <text x="58" y="60" class="ko measure">안전영역 48 / 40</text>
+
+  <!-- Central axis -->
+  <line x1="640" y1="40" x2="640" y2="680" stroke="#8ea0a6" stroke-width="1" stroke-dasharray="3 8" opacity=".28"/>
+
+  <!-- Local scrim behind title and menu -->
+  <rect x="276" y="104" width="728" height="486" rx="8" fill="#03070c" opacity=".28"/>
+
+  <!-- Logo area, exact spec box -->
+  <rect x="300" y="126" width="680" height="96" fill="#07121d" fill-opacity=".38" stroke="#8ea0a6" stroke-width="1"/>
+  <text x="640" y="187" class="ko" fill="#f1e8cf" font-size="64" font-weight="500" text-anchor="middle">주몽신화전기</text>
+  <text x="308" y="120" class="ko measure">로고 300,126 · 680×96</text>
+
+  <!-- Subtitle area, exact spec box -->
+  <rect x="300" y="232" width="680" height="28" fill="#18303d" fill-opacity=".34" stroke="#71808a" stroke-opacity=".45"/>
+  <text x="640" y="252" class="ko" fill="#c6cdd2" font-size="18" font-weight="500" text-anchor="middle">한 사람의 삶은 역사가 되고, 역사는 마침내 신화가 되었다.</text>
+  <text x="988" y="252" class="ko measure">680×28</text>
+
+  <!-- Menu group, x=476 y=356 w=328 -->
+  <g aria-label="타이틀 메뉴">
+    <!-- Focus: color + left marker + outline -->
+    <rect x="476" y="356" width="328" height="48" fill="#263844" fill-opacity=".76" stroke="#f1e8cf" stroke-width="2"/>
+    <rect x="466" y="366" width="3" height="28" fill="#a65f43"/>
+    <text x="640" y="387" class="ko menu" fill="#fff2cf">새 게임</text>
+    <text x="816" y="386" class="ko measure">FOCUS</text>
+
+    <rect x="476" y="412" width="328" height="48" fill="#07121d" fill-opacity=".20" stroke="#56636b" stroke-opacity=".35"/>
+    <text x="640" y="443" class="ko menu disabled">이어하기</text>
+
+    <rect x="476" y="468" width="328" height="48" fill="#07121d" fill-opacity=".20" stroke="#56636b" stroke-opacity=".35"/>
+    <text x="640" y="499" class="ko menu disabled">설정</text>
+
+    <rect x="476" y="524" width="328" height="48" fill="#07121d" fill-opacity=".28" stroke="#71808a" stroke-opacity=".50"/>
+    <text x="640" y="555" class="ko menu">종료</text>
+
+    <text x="476" y="348" class="ko measure">메뉴 476,356 · 328×212 · 버튼 328×48 · 간격 8</text>
+  </g>
+
+  <!-- Footer exact baseline -->
+  <text x="48" y="666" class="ko" fill="#c6cdd2" font-size="16">저장된 여정이 없습니다.</text>
+  <text x="1232" y="666" class="ko" fill="#75808a" font-size="13" text-anchor="end">PROTOTYPE · M1</text>
+  <line x1="48" y1="640" x2="1232" y2="640" stroke="#8ea0a6" stroke-width="1" opacity=".22"/>
+  <text x="48" y="636" class="ko measure">하단 도움말 / 버전 기준선 y=650 영역</text>
+
+  <!-- Canvas label -->
+  <text x="1232" y="28" class="ko measure" text-anchor="end">1280 × 720 · 16:9</text>
+</svg>

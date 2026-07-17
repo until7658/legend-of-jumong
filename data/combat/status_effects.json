@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "stack_rule": "same_effect_refreshes_to_longer_duration",
+  "effects": [
+    {"id":"sightline","name":"사선","category":"reservation","default_turns":2,"effect":{"trigger":"declared_condition","interrupt":"ranged_attack"}},
+    {"id":"stored_impact","name":"저장된 충격","category":"resource_state","default_turns":2,"effect":{"max_stacks":3,"spend":"push_or_collision"}},
+    {"id":"path_link","name":"길","category":"field","default_turns":2,"effect":{"connects_two_slots":true,"first_ally_free_move":true}},
+    {"id":"recorded_condition","name":"기록","category":"reservation","default_turns":2,"effect":{"trigger":"selected_action_type","apply":"opening"}},
+    {"id":"reserved_remedy","name":"예약 처방","category":"reservation","default_turns":2,"effect":{"trigger":"low_hp_or_debuff","interrupt":"heal_or_cleanse"}},
+    {"id":"stake_site","name":"거점","category":"field","default_turns":3,"effect":{"stores_investment":true,"max_stake":5}},
+    {"id":"opening","name":"빈틈","category":"debuff","default_turns":1,"effect":{"next_reaction_ignores_defense_pct":25}},
+    {"id":"broken_formation","name":"붕괴","category":"debuff","default_turns":1,"effect":{"defense_pct":-20,"counter_disabled":true},"boss_rule":"balance_damage_1"},
+    {"id":"guarded","name":"방어","category":"buff","default_turns":1,"effect":{"damage_taken_pct":-35}},
+    {"id":"evasion_up","name":"회피 상승","category":"buff","default_turns":1,"effect":{"evasion_pct":20}}
+  ]
+}

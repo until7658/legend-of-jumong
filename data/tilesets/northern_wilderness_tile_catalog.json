@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "tile_size": [256, 256],
+  "atlas_grid": [4, 4],
+  "terrain_connectivity_status": "needs_visual_peering_validation",
+  "atlases": [
+    {
+      "id": "ground",
+      "layer": "Ground",
+      "texture": "res://assets/tiles/normalized/basic_northern_wilderness_tiles_1024.png",
+      "collision": false
+    },
+    {
+      "id": "path",
+      "layer": "Path",
+      "texture": "res://assets/tiles/normalized/northern_wilderness_path_tiles_1024.png",
+      "collision": false
+    },
+    {
+      "id": "water",
+      "layer": "Water",
+      "texture": "res://assets/tiles/normalized/northern_wilderness_water_terrain_1024.png",
+      "collision": "shoreline_only"
+    },
+    {
+      "id": "ground_transitions",
+      "layer": "Ground",
+      "texture": "res://assets/tiles/normalized/northern_wilderness_ground_transitions_1024.png",
+      "collision": false
+    },
+    {
+      "id": "cliff_connections",
+      "layer": "Elevation",
+      "texture": "res://assets/tiles/normalized/northern_wilderness_cliff_connections_1024.png",
+      "collision": "cliff_face_only"
+    },
+    {
+      "id": "elevation_variants",
+      "layer": "Elevation",
+      "texture": "res://assets/tiles/normalized/northern_wilderness_elevation_tiles_1024.png",
+      "collision": "cliff_face_only"
+    },
+    {
+      "id": "ground_details",
+      "layer": "GroundDetail",
+      "texture": "res://assets/objects/normalized/northern_ground_detail_objects_1024.png",
+      "transparent": true,
+      "collision": false
+    }
+  ],
+  "world_objects": [
+    {
+      "id": "trees",
+      "grid": [3, 3],
+      "cell_size": [418, 418],
+      "texture": "res://assets/objects/northern_tree_objects.png",
+      "pivot": "bottom_center"
+    },
+    {
+      "id": "rocks",
+      "grid": [3, 3],
+      "cell_size": [418, 418],
+      "texture": "res://assets/objects/northern_rock_objects.png",
+      "pivot": "bottom_center"
+    }
+  ]
+}

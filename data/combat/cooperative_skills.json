@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "relationship_stages": ["unfamiliar","trust","bond","oath"],
+  "shared_resource": {"id":"party_rapport","name":"호흡","max":5,"gain":"connect_two_character_core_mechanics"},
+  "equip_limit_per_party": 2,
+  "skills": [
+    {"id":"coop_jumong_oi_finish_what_you_block","name":"네가 막으면, 내가 끝낸다","pair":["jumong","oi"],"stage":"bond","cost":3,"trigger":"oi_redirects_attack","effects":["convert_redirected_route_to_sightline","resolve_sightline_after_attack"]},
+    {"id":"coop_jumong_mari_invisible_line","name":"보이지 않는 사선","pair":["jumong","mari"],"stage":"bond","cost":3,"trigger":"sightline_crosses_path","effects":["bend_sightline_along_path","ignore_rear_and_cover"]},
+    {"id":"coop_jumong_hyeopbo_one_shot","name":"한 번이면 충분하다","pair":["jumong","hyeopbo"],"stage":"bond","cost":3,"trigger":"recorded_condition_triggers","effects":["resolve_reserved_shot","ignore_defense_pct:35"]},
+    {"id":"coop_oi_mari_exit_in_wall","name":"벽에도 출구는 있다","pair":["oi","mari"],"stage":"bond","cost":3,"trigger":"oi_creates_empty_slot","effects":["set_new_path_endpoint","move_one_ally_free"]},
+    {"id":"coop_oi_hyeopbo_faster_than_words","name":"말보다 빠른 약속","pair":["oi","hyeopbo"],"stage":"bond","cost":3,"trigger":"oi_has_reserved_remedy","effects":["convert_pending_heal_to_impact","restore_heal_after_impact_spend"]},
+    {"id":"coop_mari_hyeopbo_trace_less_move","name":"흔적 없는 수","pair":["mari","hyeopbo"],"stage":"bond","cost":3,"trigger":"enemy_follows_erased_path","effects":["attach_recorded_condition:move","evidence:+1"]},
+    {"id":"coop_jumong_soseono_different_victories","name":"서로 다른 승리","pair":["jumong","soseono"],"stage":"bond","cost":3,"trigger":"sightline_overlaps_stake_site","effects":["choose_resolve_shot_or_settlement","preserve_other_for_next_round"]},
+    {"id":"coop_oi_soseono_price_of_standing","name":"물러서지 않을 값","pair":["oi","soseono"],"stage":"bond","cost":3,"trigger":"oi_guards_stake_site","effects":["impact_received_adds_stake","enemy_action_cost_adds_stake"]},
+    {"id":"coop_mari_soseono_owner_of_crossroad","name":"길목의 주인","pair":["mari","soseono"],"stage":"bond","cost":3,"trigger":"path_endpoint_becomes_stake_site","effects":["ally_user_refund_stamina:1","enemy_user_triggers_intercept"]},
+    {"id":"coop_hyeopbo_soseono_outside_calculation","name":"계산 밖의 한 수","pair":["hyeopbo","soseono"],"stage":"bond","cost":3,"trigger":"stake_placed_on_record","effects":["on_success_enhanced_settlement","on_fail_refund_half_stake"]},
+    {"id":"oath_jumong_oi_trust_your_back","name":"등을 맡긴다는 것","pair":["jumong","oi"],"stage":"oath","cost":5,"trigger":"manual","effects":["redirect_all_enemy_attacks_to_oi","resolve_jumong_sightline_per_incoming_attack"]},
+    {"id":"oath_jumong_mari_no_road_at_eomsa","name":"엄사수에는 길이 없다","pair":["jumong","mari"],"stage":"oath","cost":5,"trigger":"manual","effects":["suspend_rows_one_round","create_escape_route","create_pursuit_blockade","escape_battle_special_victory"]},
+    {"id":"oath_jumong_hyeopbo_unrecorded_choice","name":"기록되지 않은 선택","pair":["jumong","hyeopbo"],"stage":"oath","cost":5,"trigger":"manual","effects":["choose_safe_recorded_response_or_risky_unpredicted_shot"]},
+    {"id":"oath_jumong_soseono_country_we_build","name":"두 사람이 세운 나라","pair":["jumong","soseono"],"stage":"oath","cost":5,"trigger":"manual","effects":["convert_preserved_sites_and_sightlines_to_temporary_battle_rule"]}
+  ]
+}
