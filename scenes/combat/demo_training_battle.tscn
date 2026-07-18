@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/combat/squad_battle_controller.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/combat/presentation/squad_clash_cutin_2d.tscn" id="2_cutin"]
 
 [node name="DemoTrainingBattle" type="Node2D"]
 script = ExtResource("1")
@@ -14,6 +15,11 @@ show_behind_parent = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 5
+
+[node name="Presentation" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="ClashCutin" parent="Presentation" unique_name_in_owner=true instance=ExtResource("2_cutin")]
 
 [node name="TopPanel" type="Panel" parent="UI"]
 offset_left = 24.0

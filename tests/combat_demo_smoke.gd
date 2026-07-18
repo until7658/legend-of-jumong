@@ -26,6 +26,9 @@ func _run() -> void:
 		if not battle.command_attack():
 			_fail("cannot attack at attack %d" % attack_index)
 			return
+		if not await _finish_presentations(battle):
+			_fail("presentation flow did not settle at attack %d" % attack_index)
+			return
 	var final_snapshot: Dictionary = battle.get_snapshot()
 	if str(final_snapshot.state) != "VICTORY":
 		_fail("expected VICTORY, got %s" % final_snapshot.state)
@@ -36,6 +39,16 @@ func _run() -> void:
 		return
 	print("[COMBAT_DEMO_SMOKE] PASS commander+squad state machine round=%d" % int(final_snapshot.round))
 	quit(0)
+
+
+func _finish_presentations(battle: SquadBattleController) -> bool:
+	for _frame: int in range(12):
+		var snapshot: Dictionary = battle.get_snapshot()
+		if str(snapshot.state) in ["PLAYER_SELECT", "VICTORY", "DEFEAT"]:
+			return true
+		battle.skip_active_presentation()
+		await process_frame
+	return false
 
 
 func _fail(message: String) -> void:

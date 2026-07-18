@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "id": "m4_training_squad_battle",
   "title": "동부여 수련장 분대 대련",
   "grid_size": [6, 5],
@@ -29,10 +30,14 @@
     "soldier_count": 8
   },
   "rules": {
+    "resolution_model": "soldiers_then_commander",
+    "soldier_count_range": [6, 12],
     "base_damage": 2,
     "range_advantage_bonus": 2,
     "adjacent_advantage_bonus": 2,
     "defend_reduction": 1,
-    "nonlethal": true
+    "nonlethal": true,
+    "nonlethal_outcome": "suppressed_retreat",
+    "clash_payload_version": 1
   }
 }

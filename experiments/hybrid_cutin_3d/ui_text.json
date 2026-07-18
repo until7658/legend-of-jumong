@@ -1,0 +1,12 @@
+{
+  "ko": {
+    "mode_hybrid": "B안 · 3D 미니 필드 + 2D 캐릭터",
+    "mode_fallback": "A안 · 전체 2D 폴백",
+    "controls": "Tab: A/B 전환 · Enter/Esc: 건너뛰기"
+  },
+  "en": {
+    "mode_hybrid": "B · 3D mini-field + 2D characters",
+    "mode_fallback": "A · Full 2D fallback",
+    "controls": "Tab: toggle A/B · Enter/Esc: skip"
+  }
+}

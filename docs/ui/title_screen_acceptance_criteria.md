@@ -181,7 +181,7 @@
 
 ### P0 — 정식 승인 차단
 
-- **해결됨 — 과거 3D 시험장 경로 제거.** 현재 `scripts/bootstrap/main.gd`는 오프닝 뒤 전체 2D 분대 훈련전으로 이동한다. `tests/no_3d_content_smoke.gd`로 재유입을 차단한다.
+- **해결됨 — 과거 3D 시험장 경로 제거.** 현재 `scripts/bootstrap/main.gd`는 오프닝 뒤 2D 전술 분대 훈련전으로 이동한다. `tests/2d_identity_smoke.gd`로 핵심 게임 경로의 승인되지 않은 3D 의존성을 차단한다.
 - **취소 입력이 확인 없이 즉시 게임을 종료한다.** `ui_cancel`이 바로 `quit_requested`를 방출해 키보드·게임패드 오입력으로 진행이 종료될 수 있다.
 
 ### P1 — 높은 접근성·조작성 위험

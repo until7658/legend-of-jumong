@@ -16,6 +16,7 @@ enum BattleState {
 }
 
 const DATA_PATH: String = "res://data/combat/demo_training_encounter.json"
+const CombatResolver := preload("res://scripts/combat/squad_combat_resolver.gd")
 const GRID_ORIGIN: Vector2 = Vector2(640.0, 145.0)
 const CELL_WIDTH: float = 124.0
 const CELL_HEIGHT: float = 62.0
@@ -28,6 +29,7 @@ const CELL_HEIGHT: float = 62.0
 @onready var attack_button: Button = %AttackButton
 @onready var defend_button: Button = %DefendButton
 @onready var end_turn_button: Button = %EndTurnButton
+@onready var clash_cutin: SquadClashCutin2D = get_node("Presentation/ClashCutin") as SquadClashCutin2D
 
 var state: BattleState = BattleState.SETUP
 var round_number: int = 1
@@ -37,12 +39,14 @@ var player_squad: Dictionary = {}
 var enemy_squad: Dictionary = {}
 var rules: Dictionary = {}
 var _running: bool = false
+var _pending_after_presentation: Callable = Callable()
 
 
 func _ready() -> void:
 	attack_button.pressed.connect(_on_attack_pressed)
 	defend_button.pressed.connect(command_defend)
 	end_turn_button.pressed.connect(end_player_turn)
+	clash_cutin.presentation_finished.connect(_on_clash_presentation_finished)
 	begin_battle()
 
 
@@ -60,6 +64,7 @@ func begin_battle() -> void:
 	round_number = 1
 	cursor = player_squad.position
 	_running = true
+	_pending_after_presentation = Callable()
 	_set_state(BattleState.PLAYER_SELECT)
 	print("[SQUAD_BATTLE] ready commander+troops player=%s enemy=%s" % [player_squad.id, enemy_squad.id])
 
@@ -129,15 +134,12 @@ func command_attack(target_id: String = "trainer_squad") -> bool:
 		help_label.text = "사거리 밖입니다. 방어하거나 턴을 종료하세요."
 		return false
 	_set_state(BattleState.RESOLVE)
-	var damage: int = int(rules.get("base_damage", 2))
-	if str(player_squad.troop_type) == "archer" and str(enemy_squad.troop_type) == "spear" and distance >= 2:
-		damage += int(rules.get("range_advantage_bonus", 2))
-	_apply_damage(enemy_squad, damage)
-	print("[SQUAD_BATTLE] player attack distance=%d damage=%d" % [distance, damage])
-	if _is_defeated(enemy_squad):
-		_finish(true)
-	else:
-		_run_enemy_turn()
+	var result: Dictionary = CombatResolver.resolve_clash(player_squad, enemy_squad, distance, rules)
+	player_squad = result.get("attacker", player_squad) as Dictionary
+	enemy_squad = result.get("defender", enemy_squad) as Dictionary
+	_refresh_after_resolution()
+	print("[SQUAD_BATTLE] player attack distance=%d damage=%d" % [distance, int(result.get("resolved_damage", 0))])
+	_present_clash(result.get("payload", {}) as Dictionary, _after_player_attack)
 	return true
 
 
@@ -170,11 +172,26 @@ func _run_enemy_turn() -> void:
 		enemy_squad.position = _step_toward(enemy_squad.position, player_squad.position)
 		distance = _grid_distance(enemy_squad.position, player_squad.position)
 	if distance >= int(enemy_squad.attack_min) and distance <= int(enemy_squad.attack_max):
-		var damage: int = int(rules.get("base_damage", 2))
-		if str(enemy_squad.troop_type) == "spear" and str(player_squad.troop_type) == "archer" and distance == 1:
-			damage += int(rules.get("adjacent_advantage_bonus", 2))
-		_apply_damage(player_squad, damage)
-		print("[SQUAD_BATTLE] enemy attack distance=%d damage=%d" % [distance, damage])
+		var result: Dictionary = CombatResolver.resolve_clash(enemy_squad, player_squad, distance, rules)
+		enemy_squad = result.get("attacker", enemy_squad) as Dictionary
+		player_squad = result.get("defender", player_squad) as Dictionary
+		_refresh_after_resolution()
+		var payload: Dictionary = (result.get("payload", {}) as Dictionary).duplicate(true)
+		payload["attacker_side"] = "right"
+		print("[SQUAD_BATTLE] enemy attack distance=%d damage=%d" % [distance, int(result.get("resolved_damage", 0))])
+		_present_clash(payload, _complete_enemy_turn)
+		return
+	_complete_enemy_turn()
+
+
+func _after_player_attack() -> void:
+	if _is_defeated(enemy_squad):
+		_finish(true)
+	else:
+		_run_enemy_turn()
+
+
+func _complete_enemy_turn() -> void:
 	if _is_defeated(player_squad):
 		_finish(false)
 		return
@@ -186,20 +203,33 @@ func _run_enemy_turn() -> void:
 	_set_state(BattleState.PLAYER_SELECT)
 
 
-func _apply_damage(target: Dictionary, incoming: int) -> void:
-	var damage: int = incoming
-	if bool(target.get("defending", false)):
-		damage = maxi(0, damage - int(rules.get("defend_reduction", 1)))
-	var soldier_morale: int = int(target.get("soldier_morale", 0))
-	var absorbed: int = mini(soldier_morale, damage)
-	soldier_morale -= absorbed
-	damage -= absorbed
-	target.soldier_morale = soldier_morale
-	target.soldier_count = soldier_morale
-	if damage > 0:
-		target.commander_morale = maxi(0, int(target.commander_morale) - damage)
+func _refresh_after_resolution() -> void:
 	queue_redraw()
 	_refresh_ui()
+
+
+func _present_clash(payload: Dictionary, continuation: Callable) -> void:
+	_pending_after_presentation = continuation
+	if is_instance_valid(clash_cutin):
+		clash_cutin.play_clash(payload)
+	else:
+		call_deferred(&"_resume_after_presentation")
+
+
+func _on_clash_presentation_finished(_payload: Dictionary) -> void:
+	_resume_after_presentation()
+
+
+func _resume_after_presentation() -> void:
+	var continuation: Callable = _pending_after_presentation
+	_pending_after_presentation = Callable()
+	if continuation.is_valid():
+		continuation.call()
+
+
+func skip_active_presentation() -> void:
+	if is_instance_valid(clash_cutin):
+		clash_cutin.skip()
 
 
 func _finish(victory: bool) -> void:
