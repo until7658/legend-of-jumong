@@ -18,7 +18,17 @@
 
 프로젝트 변경 후 다음 순서로 확인합니다.
 
-1. Godot 헤드리스 에디터 로드로 파일시스템 재탐색 및 파싱 오류를 확인합니다.
+Windows에서는 Godot 4.7.1을 제한된 Codex 샌드박스에서 직접 실행하지 않습니다. 네이티브 충돌과 Visual Studio JIT 디버거 팝업을 방지하기 위해 정상 사용자 환경에서 아래 runner를 한 번에 하나씩 실행합니다.
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\run_godot_check.ps1 -Mode editor
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\run_godot_check.ps1 -Mode script -ScriptPath res://tests/combat_demo_smoke.gd
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\run_godot_check.ps1 -Mode project -QuitAfter 2
+```
+
+runner 종료 코드 `86`은 제한된 샌드박스 실행 거부, `87`은 다른 Godot 프로세스 또는 검증 잠금 감지입니다. JIT 디버깅을 전역으로 끄거나 여러 검증을 병렬 실행하지 않습니다.
+
+1. runner의 `editor` 모드로 파일시스템 재탐색 및 파싱 오류를 확인합니다.
 2. `tests/2d_identity_smoke.gd`를 실행해 핵심 게임플레이 경로가 승인되지 않은 3D 의존성을 갖지 않는지 확인합니다.
 3. 메인 씬을 실행해 `[BOOTSTRAP] M4 title screen ready` 로그를 확인합니다.
 4. 타이틀→프롤로그→전체 2D 분대 훈련전 흐름을 확인합니다.

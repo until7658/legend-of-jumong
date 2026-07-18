@@ -58,6 +58,7 @@ description: 주몽 신화 기반 Godot 4.x 2D SD 캐릭터 중심 쿼터뷰 턴
 - C# 또는 C++ GDExtension은 성능·SDK·라이브러리 근거와 Steam 빌드 영향을 제시한 뒤 결정 게이트를 거친다.
 - 동일 파일을 다루는 작업은 순차 처리한다.
 - 씬·리소스 변경 후 Godot 재탐색 또는 헤드리스 로드를 수행한다.
+- Windows Godot 실행은 여러 에이전트에 분산하지 않고 `$jumong-verify`가 `tools/run_godot_check.ps1`로 순차 수행한다.
 - 오류가 승인 범위를 벗어난 수정을 요구하면 새 계획을 제출한다.
 
 ## 검증 인계
