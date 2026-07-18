@@ -4,7 +4,7 @@
 
 - 결과 이미지: `assets/review/golden_style_composite_v1.png`
 - 해상도: 1280×720
-- 가정: 직교 HD-2D 필드 카메라, 일반 탐색 화면
+- 가정: 45~50도 하향 전체 2D 쿼터뷰, 일반 탐색 화면
 - 캐릭터: `jumong_gold_idle_sheet_v1.png`의 첫 번째 대기 프레임 1개만 사용
 - 캐릭터 화면상 유효 신장: 약 145 px
 - 배경: `cartoon_northern_ground_gold_v1.png`를 1280×720 화면에 맞게 크롭·스케일

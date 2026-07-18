@@ -8,13 +8,13 @@
 - 3색 알파 검수: `assets/characters/jumong/golden_candidates/jumong_quarterview_4dir_base_candidate_review_v1.png`
 - 145px 환경 합성: `assets/characters/jumong/golden_candidates/jumong_quarterview_4dir_base_candidate_map_review_v1.png`
 - 생성 도구: OpenAI built-in image generation, 2026-07-17
-- 사용 목적: 비픽셀 HD-2D 주몽 4방향 중립 베이스 골든 후보
+- 사용 목적: 전체 2D 쿼터뷰 주몽 4방향 중립 베이스의 과거 비픽셀 후보 감사
 
 기존 `jumong_gold_*` 실패 시트는 입력으로 사용하지 않았다. 원본은 평면 `#00FF00` 크로마키 배경으로 생성했다. 설치된 `remove_chroma_key.py`는 시스템 Python 부재로 실행할 수 없어, 같은 자동 경계색·soft alpha·despill 원칙을 .NET 픽셀 처리로 적용했다. 이 차이는 정식 제작 파이프라인 확정 전 재검증 대상이다.
 
 ## 최종 생성 프롬프트 요약
 
-> 17세 주몽 정본의 얼굴·높은 묶음머리·마른 궁수 체형·적갈색 겹옷·청흑색 바지·합성궁·화살통을 유지하고, 45~50도 직교 HD-2D 카메라에서 보이는 front/south, back/north, left/west, right/east 네 방향을 한 줄에 동일 크기로 제작한다. 거친 먹선, 단순화된 큰 형태, 2.5단 셀 채색, 최소 질감, 145px 판독성을 목표로 한다. 평면 `#00FF00`, 그림자·문자·워터마크·장비 반전 금지.
+> 17세 주몽 정본의 얼굴·높은 묶음머리·마른 궁수 체형·적갈색 겹옷·청흑색 바지·합성궁·화살통을 유지하고, 45~50도 하향 전체 2D 쿼터뷰에서 보이는 front/south, back/north, left/west, right/east 네 방향을 한 줄에 동일 크기로 제작한다. 이 과거 비픽셀 후보는 현재 SD 도트 정본에 사용하지 않는다.
 
 ## 규격·알파 검사
 
