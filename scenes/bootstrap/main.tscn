@@ -1,13 +1,24 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/bootstrap/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/title_screen.tscn" id="4_title"]
 [ext_resource type="PackedScene" path="res://scenes/narrative/prologue.tscn" id="7_narrative"]
 [ext_resource type="Script" path="res://scripts/systems/display_settings.gd" id="8_display"]
 [ext_resource type="PackedScene" path="res://scenes/maps/prologue_river_cutscene.tscn" id="9_river_cutscene"]
+[ext_resource type="Script" path="res://scripts/systems/input_profile.gd" id="10_input"]
+[ext_resource type="Script" path="res://scripts/systems/save_service.gd" id="11_save"]
+[ext_resource type="PackedScene" path="res://scenes/combat/demo_training_battle.tscn" id="12_battle"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
+
+[node name="InputProfile" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_input")
+
+[node name="SaveService" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_save")
 
 [node name="DisplaySettings" type="Node" parent="."]
 unique_name_in_owner = true
@@ -15,6 +26,10 @@ script = ExtResource("8_display")
 
 [node name="RiverCutscene" parent="." instance=ExtResource("9_river_cutscene")]
 unique_name_in_owner = true
+
+[node name="TrainingBattle" parent="." instance=ExtResource("12_battle")]
+unique_name_in_owner = true
+visible = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
@@ -25,6 +40,7 @@ unique_name_in_owner = true
 [node name="Prologue" parent="UI" instance=ExtResource("7_narrative")]
 unique_name_in_owner = true
 visible = false
+duration_scale = 0.34
 
 [node name="OpeningComplete" type="Control" parent="UI"]
 unique_name_in_owner = true

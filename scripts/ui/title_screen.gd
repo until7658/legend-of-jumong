@@ -2,6 +2,7 @@ class_name TitleScreen
 extends Control
 
 signal new_game_requested
+signal continue_requested(checkpoint: Dictionary)
 signal quit_requested
 
 const INTRO_DURATION: float = 0.55
@@ -32,17 +33,21 @@ var _dialog_open: bool = false
 var _last_menu_focus: Control
 var _menu_buttons: Array[Button] = []
 var _display_settings: DisplaySettings
+var _save_service: SaveService
+var _continue_help: String = "저장된 여정이 없습니다."
 
 
 func _ready() -> void:
-	_display_settings = get_node_or_null("../DisplaySettings") as DisplaySettings
+	_display_settings = get_tree().get_first_node_in_group(&"display_settings") as DisplaySettings
 	if _display_settings == null:
 		_display_settings = DisplaySettings.new()
 		add_child(_display_settings)
 	_display_settings.initialize()
+	_save_service = get_tree().get_first_node_in_group(&"save_service") as SaveService
 	_menu_buttons = [new_game_button, continue_button, settings_button, quit_button]
 	_connect_signals()
 	_configure_focus_neighbors()
+	_refresh_continue_state()
 	new_game_button.grab_focus()
 	_last_menu_focus = new_game_button
 	_update_help(new_game_button)
@@ -64,7 +69,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _connect_signals() -> void:
 	new_game_button.pressed.connect(_on_new_game_pressed)
-	continue_button.pressed.connect(_on_unavailable_pressed.bind(continue_button))
+	continue_button.pressed.connect(_on_continue_pressed)
 	settings_button.pressed.connect(_open_settings)
 	settings_menu.closed.connect(_close_settings)
 	quit_button.pressed.connect(_open_quit_dialog)
@@ -106,12 +111,34 @@ func _on_menu_hovered(button: Button) -> void:
 
 
 func _update_help(button: Button) -> void:
-	help_text.text = str(MENU_HELP.get(button.name, ""))
+	help_text.text = _continue_help if button == continue_button else str(MENU_HELP.get(button.name, ""))
 
 
 func _on_unavailable_pressed(button: Button) -> void:
 	_update_help(button)
 	button.grab_focus()
+
+
+func _refresh_continue_state() -> void:
+	var available: bool = _save_service != null and _save_service.has_save()
+	continue_button.text = "이어하기" if available else "이어하기  ·  잠김"
+	_continue_help = "저장된 체크포인트에서 계속합니다." if available else "저장된 여정이 없습니다."
+
+
+func _on_continue_pressed() -> void:
+	if _transitioning or _dialog_open:
+		return
+	if _save_service == null:
+		_on_unavailable_pressed(continue_button)
+		return
+	var checkpoint: Dictionary = _save_service.load_checkpoint()
+	if checkpoint.is_empty():
+		_refresh_continue_state()
+		_on_unavailable_pressed(continue_button)
+		return
+	_transitioning = true
+	_set_menu_input(false)
+	continue_requested.emit(checkpoint)
 
 
 func _open_settings() -> void:

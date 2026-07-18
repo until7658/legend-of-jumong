@@ -22,7 +22,8 @@ func _run() -> void:
 	prologue.call(&"_advance")
 	await create_timer(0.7).timeout
 	var completion: Control = main.get_node("%OpeningComplete") as Control
-	if prologue.visible or not completion.visible or observed_cuts.size() != 13:
+	var battle: SquadBattleController = main.get_node("%TrainingBattle") as SquadBattleController
+	if prologue.visible or completion.visible or not battle.visible or observed_cuts.size() != 13:
 		push_error("[SMOKE_FLOW] Invalid final visibility state")
 		quit(1)
 		return
@@ -31,5 +32,5 @@ func _run() -> void:
 			push_error("[SMOKE_FLOW] Cut order mismatch")
 			quit(1)
 			return
-	print("[SMOKE_FLOW] PASS title -> 14-cut prologue -> opening complete; Chapter 01 not started")
+	print("[SMOKE_FLOW] PASS title -> 14-cut prologue -> commander squad training battle")
 	quit(0)

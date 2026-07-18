@@ -22,6 +22,10 @@ var display_available: bool = false
 var _initialized: bool = false
 
 
+func _enter_tree() -> void:
+	add_to_group(&"display_settings")
+
+
 func _ready() -> void:
 	initialize()
 

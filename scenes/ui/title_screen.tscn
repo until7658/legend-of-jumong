@@ -243,7 +243,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.62, 0.67, 0.72, 0.9)
 theme_override_font_sizes/font_size = 13
-text = "PROTOTYPE · M1"
+text = "PROTOTYPE · M4"
 horizontal_alignment = 2
 
 [node name="FadeOverlay" type="ColorRect" parent="."]
