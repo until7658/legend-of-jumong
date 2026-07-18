@@ -7,7 +7,7 @@ const SETTINGS_PATH: String = "user://display_settings.cfg"
 const SETTINGS_VERSION: int = 2
 const FALLBACK_SIZE: Vector2i = Vector2i(1280, 720)
 const STANDARD_RESOLUTIONS: Array[Vector2i] = [
-	Vector2i(1024, 576), Vector2i(1280, 720), Vector2i(1366, 768),
+	Vector2i(1024, 576), Vector2i(1280, 720), Vector2i(1280, 800), Vector2i(1366, 768),
 	Vector2i(1600, 900), Vector2i(1920, 1080), Vector2i(2560, 1440),
 	Vector2i(3200, 1800), Vector2i(3840, 2160),
 ]

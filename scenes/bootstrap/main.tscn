@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/bootstrap/main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://scenes/hd2d/hd2d_test_world.tscn" id="2_world"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hd2d_test_hud.tscn" id="3_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/title_screen.tscn" id="4_title"]
 [ext_resource type="PackedScene" path="res://scenes/narrative/prologue.tscn" id="7_narrative"]
 [ext_resource type="Script" path="res://scripts/systems/display_settings.gd" id="8_display"]
+[ext_resource type="PackedScene" path="res://scenes/maps/prologue_river_cutscene.tscn" id="9_river_cutscene"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
@@ -14,22 +13,20 @@ script = ExtResource("1_main")
 unique_name_in_owner = true
 script = ExtResource("8_display")
 
-[node name="Hd2dTestWorld" parent="." instance=ExtResource("2_world")]
+[node name="RiverCutscene" parent="." instance=ExtResource("9_river_cutscene")]
+unique_name_in_owner = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="TitleScreen" parent="UI" instance=ExtResource("4_title")]
+unique_name_in_owner = true
+
+[node name="Prologue" parent="UI" instance=ExtResource("7_narrative")]
 unique_name_in_owner = true
 visible = false
 
-[node name="Hd2dTestHud" parent="." instance=ExtResource("3_hud")]
-unique_name_in_owner = true
-visible = false
-
-[node name="TitleScreen" parent="." instance=ExtResource("4_title")]
-unique_name_in_owner = true
-
-[node name="Prologue" parent="." instance=ExtResource("7_narrative")]
-unique_name_in_owner = true
-visible = false
-
-[node name="OpeningComplete" type="Control" parent="."]
+[node name="OpeningComplete" type="Control" parent="UI"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
@@ -39,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="OpeningComplete"]
+[node name="Background" type="ColorRect" parent="UI/OpeningComplete"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.012, 0.018, 0.025, 1)
 
-[node name="Message" type="Label" parent="OpeningComplete"]
+[node name="Message" type="Label" parent="UI/OpeningComplete"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

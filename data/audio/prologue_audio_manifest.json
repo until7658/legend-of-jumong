@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "manifest_id": "prologue_audio_14cut_v1",
+  "delivery": {"master":"WAV 48kHz 24bit","long_runtime":"Ogg Vorbis","short_sfx":"WAV","peak_dbfs":-1.0,"integrated_lufs_target":-18},
+  "music_motifs": [
+    {"id":"music.motif.discovery_tension","length_s":12,"loop":false,"stems":["low_string_pulse","air_breath"],"volume_db":-18,"role":"발견의 긴장, 공포 확정 금지"},
+    {"id":"music.motif.human_trace_seed","length_s":18,"loop":false,"stems":["low_string_two_note"],"volume_db":-20,"role":"생명 확인"},
+    {"id":"music.motif.human_trace","length_s":75,"loop":true,"loop_region_s":[8,67],"stems":["low_strings","restrained_woodwind"],"volume_db":-19,"role":"구조에서 인계"},
+    {"id":"music.motif.court_caution","length_s":78,"loop":true,"loop_region_s":[6,70],"stems":["low_strings_dissonance","wood_room_drone"],"volume_db":-21,"dialogue_duck_db":-9,"role":"정치적 경계, 악역 모티프 금지"},
+    {"id":"music.motif.awakening","length_s":44,"loop":false,"stems":["low_woodwind","warm_string_harmonic"],"volume_db":-20,"role":"자연스러운 각성"},
+    {"id":"music.theme.full","length_s":33,"loop":false,"stems":["theme_strings","woodwind","restrained_frame_drum"],"volume_db":-16,"role":"컷13~14 최초 완전 주제"}
+  ],
+  "ambience": [
+    {"id":"amb.river.fast_loop","layers":["river_current","cold_wind","boat_wood"],"loop":true,"length_s":45,"volume_db":-13},
+    {"id":"amb.ferry.room_loop","layers":["wood_room","distant_river","cloth_room"],"loop":true,"length_s":40,"volume_db":-22},
+    {"id":"amb.palace.room_loop","layers":["timber_room","distant_wind"],"loop":true,"length_s":40,"volume_db":-24},
+    {"id":"amb.wind.calm_loop","layers":["soft_wind","room_air"],"loop":true,"length_s":30,"volume_db":-24},
+    {"id":"amb.birds.morning","layers":["sparse_birds"],"loop":false,"length_s":18,"volume_db":-25}
+  ],
+  "sfx_families": {
+    "water":["sfx.oar.water_soft","sfx.footstep.shallow_water"],
+    "boat":["sfx.boat.creak","sfx.net.wet_pull"],
+    "cloth":["sfx.cloth.wet_drag","sfx.cloth.wet_handle","sfx.cloth.bow","sfx.cloth.finger_move"],
+    "breath":["sfx.breath.faint","sfx.breath.waking"],
+    "door":["sfx.door.wood_open","sfx.door.wood_close","sfx.door.wood_ambient"],
+    "footsteps":["sfx.footstep.wet_wood","sfx.footstep.runner_wood"],
+    "interior":["sfx.bedding.unroll","sfx.medicine.bowl_set","sfx.bronze.small_contact"],
+    "wind":["sfx.wind.indoor_soft","sfx.flag.wind"]
+  },
+  "title_wav_review": {"path":"res://assets/audio/music/title_river_at_dawn.wav","file_bytes":14817644,"status":"technical_review_incomplete","reuse":"fallback_only_not_final","known":"file exists and is referenced as unverified placeholder","must_verify":["sample_rate","bit_depth","channels","duration","peak","lufs","clicks","source","license","ai_generation_record","motif_fit","33s edit compatibility"]},
+  "rights_record_required": ["asset_id","creator_or_generator","tool_and_model","creation_date","prompt_or_brief","human_edits","source_material","commercial_license","territory_and_term","copyright_review","steam_ai_disclosure_review","approved_by"]
+}

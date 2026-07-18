@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_map/prologue_river_cutscene_map_2d.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/objects/golden_candidates/v02/boat_v02.png" id="2_boat"]
+[ext_resource type="Texture2D" path="res://assets/objects/golden_candidates/v02/tree_v02.png" id="3_tree"]
+[ext_resource type="Texture2D" path="res://assets/objects/golden_candidates/v02/rock_v02.png" id="4_rock"]
+[ext_resource type="Texture2D" path="res://assets/objects/golden_candidates/v02/reeds_v02.png" id="5_reeds"]
+
+[sub_resource type="Curve2D" id="Curve_camera"]
+_data = {"points": PackedVector2Array(160,360, 480,360, 800,350)}
+point_count = 3
+[sub_resource type="Curve2D" id="Curve_boat"]
+_data = {"points": PackedVector2Array(80,610, 280,455, 470,320)}
+point_count = 3
+[sub_resource type="RectangleShape2D" id="GroundShape"]
+size = Vector2(720, 736)
+[sub_resource type="RectangleShape2D" id="WaterShape"]
+size = Vector2(480, 736)
+
+[node name="PrologueRiverCutsceneMap2D" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = 0
+[node name="Water" type="Node2D" parent="."]
+z_index = 1
+[node name="Shore" type="Node2D" parent="."]
+z_index = 2
+[node name="Path" type="Node2D" parent="."]
+z_index = 3
+[node name="Objects" type="Node2D" parent="."]
+z_index = 5
+y_sort_enabled = true
+[node name="Foreground" type="Node2D" parent="."]
+z_index = 20
+y_sort_enabled = true
+
+[node name="GroundCollision" type="StaticBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollision"]
+position = Vector2(920, 368)
+shape = SubResource("GroundShape")
+[node name="WaterArea2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterArea2D"]
+position = Vector2(240, 368)
+shape = SubResource("WaterShape")
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+enabled = false
+
+[node name="Markers" type="Node2D" parent="."]
+[node name="Cut01CameraMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(320, 360)
+[node name="Cut02CameraMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(540, 360)
+[node name="Cut03CameraMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(720, 350)
+[node name="RescueMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(545, 390)
+[node name="GameplayCameraMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(640, 360)
+
+[node name="CameraTravelPath2D" type="Path2D" parent="."]
+curve = SubResource("Curve_camera")
+[node name="CameraFollow2D" type="PathFollow2D" parent="CameraTravelPath2D"]
+rotates = false
+[node name="Camera2D" type="Camera2D" parent="CameraTravelPath2D/CameraFollow2D"]
+position = Vector2(0, 0)
+
+[node name="BoatTravelPath2D" type="Path2D" parent="."]
+curve = SubResource("Curve_boat")
+[node name="BoatFollow2D" type="PathFollow2D" parent="BoatTravelPath2D"]
+rotates = false
+[node name="Boat" type="Sprite2D" parent="BoatTravelPath2D/BoatFollow2D"]
+texture = ExtResource("2_boat")
+scale = Vector2(0.42, 0.42)
+
+[node name="FishermanPlaceholder2D" type="CharacterBody2D" parent="BoatTravelPath2D/BoatFollow2D"]
+visible = false
+position = Vector2(0, -26)
+[node name="Body" type="Polygon2D" parent="BoatTravelPath2D/BoatFollow2D/FishermanPlaceholder2D"]
+polygon = PackedVector2Array(-10,18, 10,18, 8,-18, 0,-28, -8,-18)
+color = Color(0.22, 0.18, 0.14, 1)
+
+[node name="YuhwaPlaceholder2D" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(545, 390)
+rotation = 1.5708
+[node name="Body" type="Polygon2D" parent="YuhwaPlaceholder2D"]
+polygon = PackedVector2Array(-12,24, 12,24, 9,-20, 0,-30, -9,-20)
+color = Color(0.34, 0.42, 0.48, 1)
+
+[node name="TreeA" type="Sprite2D" parent="Objects"]
+position = Vector2(1090, 270)
+texture = ExtResource("3_tree")
+scale = Vector2(0.55, 0.55)
+[node name="TreeB" type="Sprite2D" parent="Foreground"]
+position = Vector2(1210, 690)
+texture = ExtResource("3_tree")
+scale = Vector2(0.42, 0.42)
+[node name="RockA" type="Sprite2D" parent="Objects"]
+position = Vector2(760, 210)
+texture = ExtResource("4_rock")
+scale = Vector2(0.38, 0.38)
+[node name="RockB" type="Sprite2D" parent="Objects"]
+position = Vector2(910, 650)
+texture = ExtResource("4_rock")
+scale = Vector2(0.26, 0.26)
+[node name="ReedsA" type="Sprite2D" parent="Objects"]
+position = Vector2(500, 180)
+texture = ExtResource("5_reeds")
+scale = Vector2(0.32, 0.32)
+[node name="ReedsB" type="Sprite2D" parent="Foreground"]
+position = Vector2(470, 690)
+texture = ExtResource("5_reeds")
+scale = Vector2(0.38, 0.38)

@@ -3,6 +3,12 @@ extends Node2D
 
 signal state_changed(state_id: StringName)
 
+const TEXTURE_PATHS: Dictionary = {
+	&"front": "res://assets/characters/prologue/fisherman_front_base_v1.png",
+	&"back": "res://assets/characters/prologue/fisherman_back_base_v1.png",
+	&"left": "res://assets/characters/prologue/fisherman_left_base_v1.png",
+}
+
 enum State { IDLE, ROWING, WALKING, CHECKING }
 
 const STATE_IDS: Dictionary = {
@@ -13,7 +19,7 @@ const STATE_IDS: Dictionary = {
 }
 
 @export var initial_state: State = State.IDLE
-@export_range(80.0, 420.0, 1.0) var desired_height_px: float = 230.0
+@export var show_candidate_label: bool = false
 
 @onready var visual: Node2D = %Visual
 @onready var body: Sprite2D = %Body
@@ -28,6 +34,7 @@ var _base_scale: Vector2 = Vector2.ONE
 func _ready() -> void:
 	_fit_placeholder_texture()
 	_base_scale = visual.scale
+	placeholder_label.visible = show_candidate_label
 	set_state(initial_state, true)
 
 
@@ -45,6 +52,7 @@ func set_state(next_state: State, force: bool = false) -> void:
 	visual.rotation = 0.0
 	visual.scale = _base_scale
 	oar.visible = _state == State.ROWING
+	body.texture = _texture_for_state(_state)
 	state_changed.emit(get_state_id())
 
 
@@ -65,10 +73,15 @@ func _fit_placeholder_texture() -> void:
 	if body.texture == null:
 		push_error("[FISHERMAN_PLACEHOLDER] Missing concept texture")
 		return
-	var texture_height: float = float(body.texture.get_height())
-	var uniform_scale: float = desired_height_px / maxf(texture_height, 1.0)
-	visual.scale = Vector2(uniform_scale, uniform_scale)
+	if body.texture.get_size() != Vector2(384.0, 384.0):
+		push_warning("[FISHERMAN_CANDIDATE] Expected 384x384 texture")
+	visual.scale = Vector2.ONE
 	placeholder_label.position = Vector2(-92.0, 18.0)
+
+
+func _texture_for_state(state: State) -> Texture2D:
+	var direction: StringName = &"front" if state == State.IDLE else &"left"
+	return load(str(TEXTURE_PATHS[direction])) as Texture2D
 
 
 func _apply_pose() -> void:

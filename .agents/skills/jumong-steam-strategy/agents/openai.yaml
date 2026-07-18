@@ -1,0 +1,4 @@
+interface:
+  display_name: "주몽 Steam 전략"
+  short_description: "Steam 시장과 출시 정책 및 상점 전략을 지속적으로 조사합니다"
+  default_prompt: "Use $jumong-steam-strategy to research current Steam strategy for the next approved Jumong milestone."

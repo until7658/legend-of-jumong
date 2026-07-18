@@ -1,0 +1,4 @@
+interface:
+  display_name: "주몽 오디오"
+  short_description: "BGM, 효과음 큐, 믹싱과 Godot 런타임 재생을 관리합니다"
+  default_prompt: "Use $jumong-audio to plan approved audio cues and Godot integration."

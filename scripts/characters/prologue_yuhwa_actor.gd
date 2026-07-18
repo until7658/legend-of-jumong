@@ -3,6 +3,8 @@ extends Node2D
 
 signal state_changed(state_id: StringName)
 
+const COLLAPSED_TEXTURE_PATH: String = "res://assets/characters/prologue/yuhwa_collapsed_base_v1.png"
+
 enum State { COLLAPSED, BREATHING }
 
 const STATE_IDS: Dictionary = {
@@ -11,7 +13,7 @@ const STATE_IDS: Dictionary = {
 }
 
 @export var initial_state: State = State.BREATHING
-@export_range(100.0, 420.0, 1.0) var desired_body_length_px: float = 250.0
+@export var show_candidate_label: bool = false
 
 @onready var visual: Node2D = %Visual
 @onready var body: Sprite2D = %Body
@@ -25,6 +27,7 @@ var _base_scale: Vector2 = Vector2.ONE
 func _ready() -> void:
 	_fit_placeholder_texture()
 	_base_scale = visual.scale
+	placeholder_label.visible = show_candidate_label
 	set_state(initial_state, true)
 
 
@@ -39,8 +42,9 @@ func set_state(next_state: State, force: bool = false) -> void:
 	_state = next_state
 	_elapsed = 0.0
 	visual.position = Vector2.ZERO
-	visual.rotation = -1.48
+	visual.rotation = 0.0
 	visual.scale = _base_scale
+	body.texture = load(COLLAPSED_TEXTURE_PATH) as Texture2D
 	state_changed.emit(get_state_id())
 
 
@@ -61,13 +65,13 @@ func _fit_placeholder_texture() -> void:
 	if body.texture == null:
 		push_error("[YUHWA_PLACEHOLDER] Missing concept texture")
 		return
-	var texture_height: float = float(body.texture.get_height())
-	var uniform_scale: float = desired_body_length_px / maxf(texture_height, 1.0)
-	visual.scale = Vector2(uniform_scale, uniform_scale)
+	if body.texture.get_size() != Vector2(384.0, 384.0):
+		push_warning("[YUHWA_CANDIDATE] Expected 384x384 texture")
+	visual.scale = Vector2.ONE
 
 
 func _apply_pose() -> void:
-	visual.rotation = -1.48
+	visual.rotation = 0.0
 	if _state == State.COLLAPSED:
 		visual.position = Vector2.ZERO
 		visual.scale = _base_scale

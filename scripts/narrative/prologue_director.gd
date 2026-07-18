@@ -3,15 +3,16 @@ extends Control
 
 signal cut_changed(cut_id: int, cut: Dictionary)
 signal prologue_finished(skipped: bool)
+signal map_shot_requested(cut_id: int)
 
 const DATA_PATH: String = "res://data/narrative/prologue_cuts.json"
 const BACKDROP_PATH: String = "res://assets/ui/title/keyvisual_dawn_river_stylized_02.png"
 const ACTOR_PATHS: Dictionary = {
-	"yuhwa": "res://assets/concept/prologue/yuhwa.png",
-	"fisherman": "res://assets/concept/prologue/fisherman.png",
-	"ferry_warden": "res://assets/concept/prologue/ferry_warden.png",
-	"king_geumwa": "res://assets/concept/golden_candidates/king_geumwa_two_eras_turnaround_v02.png",
-	"court_official": "res://assets/concept/prologue/court_official.png",
+	"yuhwa": "res://assets/portraits/dialogue/yuhwa/calm.png",
+	"fisherman": "res://assets/portraits/dialogue/fisherman/concerned.png",
+	"ferry_warden": "res://assets/portraits/dialogue/ferry_warden/alert.png",
+	"king_geumwa": "res://assets/portraits/dialogue/king_geumwa/neutral.png",
+	"court_official": "res://assets/portraits/dialogue/court_official/neutral.png",
 }
 const BACKDROP_COLORS: Dictionary = {
 	"river": Color(0.38, 0.52, 0.62, 1.0),
@@ -90,6 +91,7 @@ func _advance() -> void:
 
 func _show_cut(cut: Dictionary) -> void:
 	var cut_id: int = int(cut.get("id", _cut_index + 1))
+	var uses_map: bool = cut_id <= 3
 	var backdrop_id: String = str(cut.get("backdrop", "river"))
 	scene_label.text = str(cut.get("scene", "오프닝"))
 	cut_label.text = "%02d · %s" % [cut_id, str(cut.get("title", ""))]
@@ -100,6 +102,11 @@ func _show_cut(cut: Dictionary) -> void:
 	line_label.text = line
 	_set_actor(left_actor, str(cut.get("left", "")), false)
 	_set_actor(right_actor, str(cut.get("right", "")), true)
+	backdrop.visible = not uses_map
+	backdrop_tint.visible = not uses_map
+	left_actor.visible = left_actor.visible and not uses_map
+	right_actor.visible = right_actor.visible and not uses_map
+	map_shot_requested.emit(cut_id)
 	var tint_color: Color = BACKDROP_COLORS.get(backdrop_id, Color.WHITE)
 	backdrop_tint.color = tint_color
 	backdrop_tint.color.a = 0.42 if backdrop_id in ["river", "sky", "title"] else 0.68

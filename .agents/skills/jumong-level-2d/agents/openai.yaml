@@ -1,0 +1,4 @@
+interface:
+  display_name: "주몽 2D 레벨"
+  short_description: "전체 2D 맵, 컷신 카메라와 조우 동선을 설계합니다"
+  default_prompt: "Use $jumong-level-2d to design an approved fully 2D map or cutscene."

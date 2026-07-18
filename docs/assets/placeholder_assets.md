@@ -1,4 +1,6 @@
-# M1 HD-2D 플레이스홀더 애셋 기록
+# M1 전체 2D 전환용 플레이스홀더 애셋 기록
+
+> 상태: 초기 HD-2D 실험에서 만든 파일명을 보존한 이력 문서다. 아래 SVG는 전체 2D 노드로만 통합하며 기존 Sprite3D·3D 재질 지침은 폐기한다.
 
 ## 공통 제작 정보
 
@@ -12,9 +14,9 @@
 
 | 파일 | 크기 | 목적 | 사용 예정 위치 | 가져오기 권장값 |
 | --- | ---: | --- | --- | --- |
-| `hd2d_ground.svg` | 256×256 | 3D 지면 위에 사용할 저채도 초지 텍스처 | 테스트 월드의 바닥 재질 또는 평면 | 반복 사용 시 Repeat 활성화, Filter 활성화 |
-| `hd2d_hero.svg` | 64×96 | 카메라 정면을 향하는 2D 캐릭터 대역 | `Sprite3D` 또는 빌보드 캐릭터 노드 | Filter 비활성화 권장, 투명 배경 유지 |
-| `hd2d_tree.svg` | 128×192 | 깊이와 가림을 시험하는 식생 대역 | `Sprite3D` 환경 소품 | Filter 활성화, 투명 배경 유지 |
+| `hd2d_ground.svg` | 256×256 | 저채도 초지 2D 타일 플레이스홀더 | `TileMapLayer` 또는 `Sprite2D` 지면 | 반복 사용 시 Repeat 활성화, Filter 활성화 |
+| `hd2d_hero.svg` | 64×96 | 필드 2D 캐릭터 대역 | `Sprite2D` 또는 `CharacterBody2D` 하위 시각 노드 | Filter 비활성화 권장, 투명 배경 유지 |
+| `hd2d_tree.svg` | 128×192 | 깊이와 가림을 시험하는 2D 식생 대역 | Y 정렬된 `Sprite2D` 환경 소품 | Filter 활성화, 투명 배경 유지 |
 | `hd2d_marker.svg` | 96×96 | 이동 목표나 상호작용 지점 표시 | 월드 마커 또는 UI 안내 | Filter 활성화, 투명 배경 유지 |
 
 ## 표현 원칙
@@ -26,7 +28,7 @@
 
 ## 통합 가이드
 
-1. `hd2d_ground.svg`를 3D 평면의 `StandardMaterial3D.albedo_texture`에 연결한다.
-2. `hd2d_hero.svg`와 `hd2d_tree.svg`는 `Sprite3D`에 연결하고 `billboard`를 활성화한다.
-3. 캐릭터의 발 피벗은 텍스처 하단 중앙으로 맞추고 지면과 겹치지 않도록 월드 Y 위치를 조정한다.
-4. 마커는 반투명 정렬 문제를 피하도록 캐릭터보다 낮은 렌더 우선순위에서 먼저 시험한다.
+1. `hd2d_ground.svg`를 `TileMapLayer` 또는 반복 `Sprite2D` 지면에 연결한다.
+2. `hd2d_hero.svg`와 `hd2d_tree.svg`는 `Sprite2D`에 연결하고 Y 정렬과 `z_index`를 설정한다.
+3. 캐릭터의 발 피벗은 텍스처 하단 중앙으로 맞추고 2D 월드 Y 정렬 기준을 통일한다.
+4. 마커는 `Area2D`와 `Sprite2D`로 구성하고 캐릭터보다 낮은 `z_index`에서 시험한다.

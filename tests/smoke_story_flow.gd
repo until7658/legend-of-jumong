@@ -13,7 +13,7 @@ func _run() -> void:
 	await process_frame
 	main.call(&"_on_new_game_requested")
 	await process_frame
-	var prologue: PrologueDirector = main.get_node("Prologue") as PrologueDirector
+	var prologue: PrologueDirector = main.get_node("%Prologue") as PrologueDirector
 	var observed_cuts: Array[int] = []
 	prologue.cut_changed.connect(func(cut_id: int, _cut: Dictionary) -> void: observed_cuts.append(cut_id))
 	for step: int in range(13):
@@ -21,7 +21,7 @@ func _run() -> void:
 		await process_frame
 	prologue.call(&"_advance")
 	await create_timer(0.7).timeout
-	var completion: Control = main.get_node("OpeningComplete") as Control
+	var completion: Control = main.get_node("%OpeningComplete") as Control
 	if prologue.visible or not completion.visible or observed_cuts.size() != 13:
 		push_error("[SMOKE_FLOW] Invalid final visibility state")
 		quit(1)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "주몽 코어 시스템"
+  short_description: "부트스트랩, 장면 전환, 입력과 저장 시스템을 안전하게 관리합니다"
+  default_prompt: "Use $jumong-core-systems to plan an approved core Godot system change."

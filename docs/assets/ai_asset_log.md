@@ -1,5 +1,7 @@
 # AI 생성 애셋 기록
 
+> 전체 2D 전환 상태: 과거 항목의 `HD-2D` 표현은 생성 당시 목적을 보존한 이력이다. 해당 애셋은 Node3D·Sprite3D·3D 재질로 통합하지 않으며, 실제 채택 시 Sprite2D·TileMapLayer·CanvasItem 기반 전체 2D 규격으로 재검토한다.
+
 ## 북방 자연환경 카툰 골든 스타일 샘플 v1
 
 - 파일: `assets/tiles/golden/cartoon_northern_ground_gold_v1.png`, `assets/objects/golden/cartoon_northern_props_gold_v1.png`
@@ -431,3 +433,17 @@
 - 권리 검토: 프로젝트 내부 원화와 카툰형 02 스타일 문서만 참고했으며 특정 외부 작품·작가·배우·문양을 요청하지 않았다. 상업 채택 전 생성 도구 조건과 시각적 유사성을 다시 검토한다.
 - 판정: 유화 v02·금와 v02는 승인 후보, 왕자 v02는 조건부 승인이다. 주몽 쿼터뷰 v01/v02는 방향축·투영·장비 마스터 불일치로 **게임 연결 금지**다. 강변 Terrain·분리 소품 v02는 반복·알파·피벗 기계 검사를 통과했으나 Godot 배치 검증 전 `부분 승인`이다.
 - 상세 증거: `docs/art/main_cast_revision_batch01_review.md`, `docs/art/jumong_quarterview_candidate_review.md`, `docs/art/prologue_river_golden_candidate_review.md`, `docs/art/prologue_river_golden_candidate_v02_review.md`
+
+## 프롤로그 유화·어부 2D 액터 후보 배치 v1
+
+- 파일: `assets/characters/prologue/*.png`
+- 대표 원본 후보: `fisherman_3dir_source_v1.png`, `yuhwa_3dir_collapsed_source_v1.png`
+- 파생 검토본: `fisherman_neutral_3dir_sheet_v1.png`, `yuhwa_neutral_3dir_collapsed_sheet_v1.png`, `opening_actor_3color_review_v1.png`, `opening_actor_map_145px_review_v1.png`
+- 방향별 베이스: `fisherman_{front,back,left}_base_v1.png`, `yuhwa_{front,back,left,collapsed}_base_v1.png`
+- 생성일: 파일 기록 기준 2026-07-17
+- 분류: `stylized-concept`, `2d-actor-candidate`
+- 목적: 프롤로그 강변 1~3컷의 어부 노 젓기·이동·호흡 확인과 유화 구조 장면을 전체 2D 액터로 검증
+- 수정 여부: 소스 후보에서 방향별 베이스와 검토 시트를 분리·정규화한 것으로 보이나, 현재 저장소 기록만으로 정확한 생성 도구와 후처리 절차를 확정할 수 없음
+- 사용 위치: `scenes/characters/prologue_fisherman_actor.tscn`, `scenes/characters/prologue_yuhwa_actor.tscn`, 2D 프롤로그 컷신 후보
+- 권리 검토: 생성 출처와 이용 조건이 아직 확정되지 않았으므로 상업용 최종 애셋으로 승인하지 않는다. 원본 생성 세션·도구·프롬프트·참고 이미지와 후처리 기록을 확인한 뒤 Steam AI 콘텐츠 설문과 비침해 검토에 반영해야 한다.
+- 상태: 프롤로그 수직 슬라이스의 **검증용 골든 후보**. 출처 확정과 사용자 시각 승인 전 최종 게임 사용 금지

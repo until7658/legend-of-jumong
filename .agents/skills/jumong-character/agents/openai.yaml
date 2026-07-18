@@ -1,0 +1,4 @@
+interface:
+  display_name: "주몽 캐릭터"
+  short_description: "캐릭터 데이터, 액터 씬과 성장 구조를 일관되게 통합합니다"
+  default_prompt: "Use $jumong-character to plan an approved Jumong character implementation."

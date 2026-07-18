@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_map/prologue_river_cutscene.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/maps/prologue_river_cutscene_map_2d.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/characters/prologue_fisherman_actor.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/characters/prologue_yuhwa_actor.tscn" id="4"]
+
+[node name="PrologueRiverCutscene" type="Node2D"]
+script = ExtResource("1")
+
+[node name="RiverMap" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+
+[node name="Actors" type="Node2D" parent="."]
+z_index = 15
+
+[node name="Fisherman" parent="Actors" instance=ExtResource("3")]
+unique_name_in_owner = true
+scale = Vector2(0.42, 0.42)
+
+[node name="Yuhwa" parent="Actors" instance=ExtResource("4")]
+unique_name_in_owner = true
+scale = Vector2(0.42, 0.42)
